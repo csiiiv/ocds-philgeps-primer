@@ -1,0 +1,32 @@
+{
+  "name": "ocds-primer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Interactive OCDS primer: follow one contracting process from raw event to red-flag signal.",
+  "scripts": {
+    "dev": "vite",
+    "validate:examples": "node scripts/validate-examples.mjs",
+    "build": "npm run validate:examples && tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@mdx-js/rollup": "^3.1.0",
+    "@playwright/test": "^1.62.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "ajv": "^8.20.0",
+    "ajv-draft-04": "^1.0.0",
+    "ajv-formats": "^3.0.1",
+    "lighthouse": "^13.4.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,882 @@
+{
+  "uri": "urn:uuid:1718be18-e762-59a6-8cca-fe1dc103282f",
+  "version": "1.1",
+  "publishedDate": "2023-12-18T15:37:53+08:00",
+  "publisher": {
+    "name": "Local OCDS Primer proof-of-concept publisher"
+  },
+  "releases": [
+    {
+      "ocid": "ocds-philgeps-poc-23-11-1710-national-meat-inspection",
+      "id": "ocds-philgeps-poc-23-11-1710-national-meat-inspection-626a0cf9136e",
+      "date": "2023-12-18T15:37:53+08:00",
+      "tag": [
+        "tender",
+        "award",
+        "contract"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-national-meat-inspection-service",
+        "name": "NATIONAL MEAT INSPECTION  SERVICE"
+      },
+      "parties": [
+        {
+          "id": "buyer-national-meat-inspection-service",
+          "name": "NATIONAL MEAT INSPECTION  SERVICE",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        },
+        {
+          "id": "supplier-e-copy-corporation",
+          "name": "E-COPY CORPORATION",
+          "roles": [
+            "supplier"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "23-11-1710",
+        "title": "Ten cartridges of Sharp Toner  (Direct Contracting Exclusive Dealer / Manufacturer)",
+        "status": "complete",
+        "procurementMethod": "direct",
+        "procurementMethodDetails": "Direct Contracting (Sec. 50)",
+        "mainProcurementCategory": "goods",
+        "items": [
+          {
+            "id": "1",
+            "description": "Ten cartridges of Sharp Toner",
+            "quantity": 10,
+            "unit": {
+              "name": "Cartridge",
+              "value": {
+                "amount": 86630,
+                "currency": "PHP"
+              }
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "44103103",
+              "description": "Printer or facsimile toner"
+            }
+          }
+        ],
+        "value": {
+          "amount": 86630,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-12-18T15:37:53+08:00"
+        }
+      },
+      "awards": [
+        {
+          "id": "4563951",
+          "status": "active",
+          "title": "Ten cartridges of Sharp Toner  (Direct Contracting Exclusive Dealer / Manufacturer)",
+          "date": "2023-12-01T00:00:00+08:00",
+          "items": [
+            {
+              "id": "1",
+              "description": "Ten cartridges of Sharp Toner",
+              "quantity": 10,
+              "unit": {
+                "name": "Cartridge",
+                "value": {
+                  "amount": 86630,
+                  "currency": "PHP"
+                }
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "44103103",
+                "description": "Printer or facsimile toner"
+              }
+            }
+          ],
+          "value": {
+            "amount": 86630,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-e-copy-corporation",
+              "name": "E-COPY CORPORATION"
+            }
+          ]
+        }
+      ],
+      "contracts": [
+        {
+          "id": "DC2023-12-11",
+          "awardID": "4563951",
+          "status": "active",
+          "value": {
+            "amount": 86630,
+            "currency": "PHP"
+          }
+        }
+      ]
+    },
+    {
+      "ocid": "ocds-philgeps-poc-9386985-municipality-of-liliw-la",
+      "id": "ocds-philgeps-poc-9386985-municipality-of-liliw-la-3ee5c0dd048a",
+      "date": "2023-02-20T13:27:17+08:00",
+      "tag": [
+        "tender",
+        "award",
+        "contract"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-municipality-of-liliw-laguna",
+        "name": "MUNICIPALITY OF LILIW, LAGUNA"
+      },
+      "parties": [
+        {
+          "id": "buyer-municipality-of-liliw-laguna",
+          "name": "MUNICIPALITY OF LILIW, LAGUNA",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        },
+        {
+          "id": "supplier-liliw-municipal-employees-multi-purpose-cooperative",
+          "name": "LILIW MUNICIPAL EMPLOYEES MULTI-PURPOSE COOPERATIVE",
+          "roles": [
+            "supplier"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "9386985",
+        "title": "Supply and Delivery of Materials for the Installation of Streetlights (Continuation of Liliw-Majayjay Road)",
+        "status": "complete",
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Public Bidding",
+        "mainProcurementCategory": "goods",
+        "items": [
+          {
+            "id": "4",
+            "description": "10 THHN Wire (150mtrs/box)",
+            "quantity": 67,
+            "unit": {
+              "name": "Box"
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "39111700",
+              "description": "Emergency lighting and accessories"
+            }
+          },
+          {
+            "id": "1",
+            "description": "100 watts LED Streetlight",
+            "quantity": 5,
+            "unit": {
+              "name": "Piece"
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "39111700",
+              "description": "Emergency lighting and accessories"
+            }
+          },
+          {
+            "id": "2",
+            "description": "LED Power Supply Driver -240W-12 220V 50%",
+            "quantity": 50,
+            "unit": {
+              "name": "Piece"
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "39111700",
+              "description": "Emergency lighting and accessories"
+            }
+          },
+          {
+            "id": "3",
+            "description": "100W White LED Light High Power Lamp 24x44ML 12V",
+            "quantity": 50,
+            "unit": {
+              "name": "Piece"
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "39111700",
+              "description": "Emergency lighting and accessories"
+            }
+          }
+        ],
+        "value": {
+          "amount": 478775,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-01-04T00:00:00+08:00",
+          "endDate": "2023-01-11T10:00:00+08:00"
+        }
+      },
+      "awards": [
+        {
+          "id": "4060379",
+          "status": "active",
+          "title": "Supply and Delivery of Materials for the Installation of Streetlights (Continuation of Liliw-Majayjay Road)",
+          "date": "2023-02-10T00:00:00+08:00",
+          "items": [
+            {
+              "id": "4",
+              "description": "10 THHN Wire (150mtrs/box)",
+              "quantity": 67,
+              "unit": {
+                "name": "Box"
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "39111700",
+                "description": "Emergency lighting and accessories"
+              }
+            },
+            {
+              "id": "1",
+              "description": "100 watts LED Streetlight",
+              "quantity": 5,
+              "unit": {
+                "name": "Piece"
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "39111700",
+                "description": "Emergency lighting and accessories"
+              }
+            },
+            {
+              "id": "2",
+              "description": "LED Power Supply Driver -240W-12 220V 50%",
+              "quantity": 50,
+              "unit": {
+                "name": "Piece"
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "39111700",
+                "description": "Emergency lighting and accessories"
+              }
+            },
+            {
+              "id": "3",
+              "description": "100W White LED Light High Power Lamp 24x44ML 12V",
+              "quantity": 50,
+              "unit": {
+                "name": "Piece"
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "39111700",
+                "description": "Emergency lighting and accessories"
+              }
+            }
+          ],
+          "value": {
+            "amount": 476465,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-liliw-municipal-employees-multi-purpose-cooperative",
+              "name": "LILIW MUNICIPAL EMPLOYEES MULTI-PURPOSE COOPERATIVE"
+            }
+          ]
+        }
+      ],
+      "contracts": [
+        {
+          "id": "23-01-0003",
+          "awardID": "4060379",
+          "status": "active",
+          "value": {
+            "amount": 476465,
+            "currency": "PHP"
+          },
+          "period": {
+            "startDate": "2023-02-10T00:00:00+08:00",
+            "endDate": "2023-02-10T00:00:00+08:00"
+          }
+        }
+      ]
+    },
+    {
+      "ocid": "ocds-philgeps-poc-9342044-city-of-cebu-cebu",
+      "id": "ocds-philgeps-poc-9342044-city-of-cebu-cebu-e7673c2b40db",
+      "date": "2023-05-09T09:44:58+08:00",
+      "tag": [
+        "tender",
+        "award",
+        "contract"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-city-of-cebu-cebu",
+        "name": "CITY OF CEBU, CEBU"
+      },
+      "parties": [
+        {
+          "id": "buyer-city-of-cebu-cebu",
+          "name": "CITY OF CEBU, CEBU",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        },
+        {
+          "id": "supplier-trends-technologies-inc",
+          "name": "TRENDS & TECHNOLOGIES, INC.",
+          "roles": [
+            "supplier"
+          ]
+        },
+        {
+          "id": "supplier-skynet-digital-systems-inc",
+          "name": "SKYNET DIGITAL SYSTEMS INC.",
+          "roles": [
+            "supplier"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "9342044",
+        "title": "5 LIC. SECURE SOCKET LICENSE (5 DOMAINS)",
+        "status": "complete",
+        "procurementMethod": "limited",
+        "procurementMethodDetails": "Negotiated Procurement - Small Value Procurement (Sec. 53.9)",
+        "mainProcurementCategory": "goods",
+        "items": [
+          {
+            "id": "1",
+            "description": "SECURE SOCKET LICENSE",
+            "quantity": 5,
+            "unit": {
+              "name": "License",
+              "value": {
+                "amount": 440000,
+                "currency": "PHP"
+              }
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "48000000",
+              "description": "Service Industry Machinery and Equipment and Supplies"
+            }
+          },
+          {
+            "id": "2",
+            "description": "MANAGE IT SERVICE OF IBM SYSTEM STORAGE",
+            "quantity": 12,
+            "unit": {
+              "name": "Unit",
+              "value": {
+                "amount": 498600,
+                "currency": "PHP"
+              }
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "48000000",
+              "description": "Service Industry Machinery and Equipment and Supplies"
+            }
+          }
+        ],
+        "value": {
+          "amount": 949992,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-01-23T00:00:00+08:00",
+          "endDate": "2023-01-27T17:00:00+08:00"
+        }
+      },
+      "awards": [
+        {
+          "id": "4193158",
+          "status": "active",
+          "title": "SERVICES",
+          "date": "2023-03-16T00:00:00+08:00",
+          "items": [
+            {
+              "id": "1",
+              "description": "SECURE SOCKET LICENSE",
+              "quantity": 5,
+              "unit": {
+                "name": "License",
+                "value": {
+                  "amount": 440000,
+                  "currency": "PHP"
+                }
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "48000000",
+                "description": "Service Industry Machinery and Equipment and Supplies"
+              }
+            }
+          ],
+          "value": {
+            "amount": 440000,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-trends-technologies-inc",
+              "name": "TRENDS & TECHNOLOGIES, INC."
+            }
+          ]
+        },
+        {
+          "id": "4193159",
+          "status": "active",
+          "title": "SERVICES",
+          "date": "2023-03-16T00:00:00+08:00",
+          "items": [
+            {
+              "id": "2",
+              "description": "MANAGE IT SERVICE OF IBM SYSTEM STORAGE",
+              "quantity": 12,
+              "unit": {
+                "name": "Unit",
+                "value": {
+                  "amount": 498600,
+                  "currency": "PHP"
+                }
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "48000000",
+                "description": "Service Industry Machinery and Equipment and Supplies"
+              }
+            }
+          ],
+          "value": {
+            "amount": 498600,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-skynet-digital-systems-inc",
+              "name": "SKYNET DIGITAL SYSTEMS INC."
+            }
+          ]
+        }
+      ],
+      "contracts": [
+        {
+          "id": "0261",
+          "awardID": "4193158",
+          "status": "active",
+          "value": {
+            "amount": 440000,
+            "currency": "PHP"
+          },
+          "period": {
+            "startDate": "2023-03-22T00:00:00+08:00",
+            "endDate": "2023-04-21T00:00:00+08:00"
+          }
+        },
+        {
+          "id": "0262",
+          "awardID": "4193159",
+          "status": "active",
+          "value": {
+            "amount": 498600,
+            "currency": "PHP"
+          },
+          "period": {
+            "startDate": "2023-04-20T00:00:00+08:00",
+            "endDate": "2023-05-22T00:00:00+08:00"
+          }
+        }
+      ]
+    },
+    {
+      "ocid": "ocds-philgeps-poc-6412776-barangay-taloto-camalig-",
+      "id": "ocds-philgeps-poc-6412776-barangay-taloto-camalig--8693de43fc38",
+      "date": "2023-07-23T00:00:00+08:00",
+      "tag": [
+        "tender"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-barangay-taloto-camalig-albay",
+        "name": "BARANGAY TALOTO, CAMALIG, ALBAY"
+      },
+      "parties": [
+        {
+          "id": "buyer-barangay-taloto-camalig-albay",
+          "name": "BARANGAY TALOTO, CAMALIG, ALBAY",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "6412776",
+        "title": "Construction of Stage",
+        "status": "cancelled",
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Public Bidding",
+        "mainProcurementCategory": "works",
+        "items": [
+          {
+            "id": "1",
+            "description": "Construction Project",
+            "quantity": 36,
+            "unit": {
+              "name": "Square Meter",
+              "value": {
+                "amount": 389964.58,
+                "currency": "PHP"
+              }
+            }
+          }
+        ],
+        "value": {
+          "amount": 389964.58,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-07-23T00:00:00+08:00",
+          "endDate": "2023-08-01T13:00:00+08:00"
+        }
+      }
+    },
+    {
+      "ocid": "ocds-philgeps-poc-7482778-diwa-elementary-school",
+      "id": "ocds-philgeps-poc-7482778-diwa-elementary-school-8c0135024361",
+      "date": "2023-02-23T15:00:20+08:00",
+      "tag": [
+        "tender",
+        "award"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-diwa-elementary-school",
+        "name": "DIWA ELEMENTARY SCHOOL"
+      },
+      "parties": [
+        {
+          "id": "buyer-diwa-elementary-school",
+          "name": "DIWA ELEMENTARY SCHOOL",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        },
+        {
+          "id": "supplier-mahogany-consumer-goods-trading",
+          "name": "MAHOGANY CONSUMER GOODS TRADING",
+          "roles": [
+            "supplier"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "7482778",
+        "title": "CONSTRUCTION MATERIALS FOR SCHOOL CANTEEN RENOVATION",
+        "status": "complete",
+        "procurementMethod": "limited",
+        "procurementMethodDetails": "Shopping",
+        "mainProcurementCategory": "goods",
+        "items": [
+          {
+            "id": "1",
+            "description": "construction materials for school canteen renovation",
+            "quantity": 20,
+            "unit": {
+              "name": "Lot",
+              "value": {
+                "amount": 51872,
+                "currency": "PHP"
+              }
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "30000000",
+              "description": "Structures and Building and Construction and Manufacturing Components and Supplies"
+            }
+          }
+        ],
+        "value": {
+          "amount": 51872,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-02-16T00:00:00+08:00",
+          "endDate": "2023-02-22T12:59:00+08:00"
+        }
+      },
+      "awards": [
+        {
+          "id": "4082604",
+          "status": "active",
+          "title": "construction materials",
+          "date": "2023-02-23T00:00:00+08:00",
+          "items": [
+            {
+              "id": "1",
+              "description": "construction materials for school canteen renovation",
+              "quantity": 20,
+              "unit": {
+                "name": "Lot",
+                "value": {
+                  "amount": 51872,
+                  "currency": "PHP"
+                }
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "30000000",
+                "description": "Structures and Building and Construction and Manufacturing Components and Supplies"
+              }
+            }
+          ],
+          "value": {
+            "amount": 51872,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-mahogany-consumer-goods-trading",
+              "name": "MAHOGANY CONSUMER GOODS TRADING"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ocid": "ocds-philgeps-poc-9384586-home-development-mutual-",
+      "id": "ocds-philgeps-poc-9384586-home-development-mutual--29140dd3d765",
+      "date": "2023-03-17T09:05:48+08:00",
+      "tag": [
+        "tender",
+        "award",
+        "contract"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-home-development-mutual-fund",
+        "name": "HOME DEVELOPMENT MUTUAL FUND"
+      },
+      "parties": [
+        {
+          "id": "buyer-home-development-mutual-fund",
+          "name": "HOME DEVELOPMENT MUTUAL FUND",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        },
+        {
+          "id": "supplier-ssp-manpower-services",
+          "name": "SSP MANPOWER SERVICES",
+          "roles": [
+            "supplier"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "9384586",
+        "title": "Provision of Janitorial & General Support Services for Pag-IBIG Fund - Western Mindanao",
+        "status": "complete",
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Public Bidding",
+        "mainProcurementCategory": "services",
+        "items": [
+          {
+            "id": "1",
+            "description": "Provision of Janitorial & General Support Services for Pag-IBIG Fund - Western Mindanao",
+            "quantity": 1,
+            "unit": {
+              "name": "Lot",
+              "value": {
+                "amount": 9559905.09,
+                "currency": "PHP"
+              }
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "76110000",
+              "description": "Cleaning and janitorial services"
+            }
+          }
+        ],
+        "value": {
+          "amount": 9559905.09,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-01-13T00:00:00+08:00",
+          "endDate": "2023-02-01T13:00:00+08:00"
+        }
+      },
+      "awards": [
+        {
+          "id": "4114686",
+          "status": "active",
+          "title": "Provision of Janitorial & General Support Services",
+          "date": "2023-03-16T00:00:00+08:00",
+          "items": [
+            {
+              "id": "1",
+              "description": "Provision of Janitorial & General Support Services for Pag-IBIG Fund - Western Mindanao",
+              "quantity": 1,
+              "unit": {
+                "name": "Lot",
+                "value": {
+                  "amount": 9559905.09,
+                  "currency": "PHP"
+                }
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "76110000",
+                "description": "Cleaning and janitorial services"
+              }
+            }
+          ],
+          "value": {
+            "amount": 8955259.8,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-ssp-manpower-services",
+              "name": "SSP MANPOWER SERVICES"
+            }
+          ]
+        }
+      ],
+      "contracts": [
+        {
+          "id": "2023-05-002",
+          "awardID": "4114686",
+          "status": "active",
+          "value": {
+            "amount": 8955259.8,
+            "currency": "PHP"
+          },
+          "period": {
+            "startDate": "2023-05-01T00:00:00+08:00",
+            "endDate": "2026-04-30T00:00:00+08:00"
+          }
+        }
+      ]
+    },
+    {
+      "ocid": "ocds-philgeps-poc-8602960-ministry-of-public-works",
+      "id": "ocds-philgeps-poc-8602960-ministry-of-public-works-465171f2470b",
+      "date": "2023-01-14T00:00:00+08:00",
+      "tag": [
+        "tender",
+        "award"
+      ],
+      "initiationType": "tender",
+      "buyer": {
+        "id": "buyer-ministry-of-public-works-barmm-lanao-del-sur-first-eng-g-d",
+        "name": "MINISTRY OF PUBLIC WORKS - BARMM LANAO DEL SUR FIRST ENG'G D"
+      },
+      "parties": [
+        {
+          "id": "buyer-ministry-of-public-works-barmm-lanao-del-sur-first-eng-g-d",
+          "name": "MINISTRY OF PUBLIC WORKS - BARMM LANAO DEL SUR FIRST ENG'G D",
+          "roles": [
+            "buyer",
+            "procuringEntity"
+          ]
+        },
+        {
+          "id": "supplier-bm-construction-and-supply",
+          "name": "BM CONSTRUCTION AND SUPPLY",
+          "roles": [
+            "supplier"
+          ]
+        }
+      ],
+      "tender": {
+        "id": "8602960",
+        "title": "22IP022 - Construction of Ilian Maul Road, Marantao",
+        "status": "complete",
+        "procurementMethod": "limited",
+        "procurementMethodDetails": "Negotiated Procurement - Small Value Procurement (Sec. 53.9)",
+        "mainProcurementCategory": "goods",
+        "items": [
+          {
+            "id": "1",
+            "description": "Construction of Ilian Maul Road, Marantao",
+            "quantity": 1,
+            "unit": {
+              "name": "Lot",
+              "value": {
+                "amount": 10185000,
+                "currency": "PHP"
+              }
+            },
+            "classification": {
+              "scheme": "UNSPSC",
+              "id": "81111801",
+              "description": "Computer or network or internet security"
+            }
+          }
+        ],
+        "value": {
+          "amount": 420037.92,
+          "currency": "PHP"
+        },
+        "tenderPeriod": {
+          "startDate": "2023-01-14T00:00:00+08:00",
+          "endDate": "2023-01-17T01:00:00+08:00"
+        }
+      },
+      "awards": [
+        {
+          "id": "3999542",
+          "status": "active",
+          "title": "22IP022",
+          "date": "2022-08-02T00:00:00+08:00",
+          "items": [
+            {
+              "id": "1",
+              "description": "Construction of Ilian Maul Road, Marantao",
+              "quantity": 1,
+              "unit": {
+                "name": "Lot",
+                "value": {
+                  "amount": 10185000,
+                  "currency": "PHP"
+                }
+              },
+              "classification": {
+                "scheme": "UNSPSC",
+                "id": "81111801",
+                "description": "Computer or network or internet security"
+              }
+            }
+          ],
+          "value": {
+            "amount": 10132897.23,
+            "currency": "PHP"
+          },
+          "suppliers": [
+            {
+              "id": "supplier-bm-construction-and-supply",
+              "name": "BM CONSTRUCTION AND SUPPLY"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

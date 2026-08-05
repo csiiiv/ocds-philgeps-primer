@@ -1,0 +1,51 @@
+{
+  "_comment": "Catalogue of worked examples for the OCDS primer. Phase 1 uses the synthetic flagship only. A later possible-journeys gallery will read the full catalogue before assembling the examples into a multi-process publication. Shapes and percentages are contextual results from the first 2000 records in ocds/sample/compiled_releases.jsonl, not population estimates.",
+  "_sourceDistribution": {
+    "_note": "Real distribution of process shapes in the workspace's compiled-release sample. Used to pick honest examples and to show learners that 'a contracting process' is usually NOT a tidy full lifecycle.",
+    "sampleSize": 2000,
+    "sampleFile": "ocds/sample/compiled_releases.jsonl",
+    "shapes": [
+      { "shape": "failed-or-awards-only", "awardCount": 0, "contractCount": 0, "percent": 70, "_note": "0 awards, 0 contracts. Includes cancelled, unsuccessful, and 'complete but no award recorded' processes. Mix of tender.status values." },
+      { "shape": "award-only",            "awardCount": 1, "contractCount": 0, "percent": 19, "_note": "Award recorded, contract absent from the export." },
+      { "shape": "full-lifecycle",         "awardCount": 1, "contractCount": 1, "percent": 10, "_note": "Award + contract both present." },
+      { "shape": "explicitly-cancelled",   "tenderStatus": "cancelled",        "percent": 0.25 },
+      { "shape": "explicitly-unsuccessful","tenderStatus": "unsuccessful",     "percent": 0.05 }
+    ]
+  },
+
+  "examples": [
+    {
+      "id": "denr-r7-laptops-2024",
+      "file": "denr-r7-laptops-2024.json",
+      "title": "Laptops for DENR Region VII, 2024",
+      "shape": "full-lifecycle",
+      "releaseCount": 7,
+      "percentInRealData": 10,
+      "teaches": "The complete lifecycle: tender → amendment → bids → award → contract → implementation. The flagship — exercises every station and shows what 'a full record' looks like.",
+      "defaultExample": true
+    },
+    {
+      "id": "dole-computer-upgrades-2002",
+      "file": "dole-computer-upgrades-2002.json",
+      "title": "Computer Upgrades for DOLE Main, 2002",
+      "shape": "award-only",
+      "releaseCount": 2,
+      "percentInRealData": 19,
+      "teaches": "A common partial lifecycle: award recorded but no contract. Shows that real data is often incomplete, and surfaces real data-quality issues (award date before notice date).",
+      "defaultExample": false
+    },
+    {
+      "id": "chr-office-tables-2002",
+      "file": "chr-office-tables-2002.json",
+      "title": "Office Tables & Chairs for CHR, 2002",
+      "shape": "cancelled",
+      "releaseCount": 2,
+      "percentInRealData": 70,
+      "teaches": "The most common shape: a process that never reached an award. Shows that 'a contracting process' often ends at the tender stage, and that red-flag indicators correctly return 'no data' when there's nothing to analyze.",
+      "defaultExample": false
+    }
+  ],
+
+  "pipelineHonestyNote": "All three examples are fictional but shaped on real PhilGEPS records. Their multi-release event histories are illustrative of the TARGET OCDS-compliant model — this workspace's compile_ocds.py currently emits one compiled release per process (tag: ['compiled']), not a release history or a record. See PHILGEPS_PIPELINE_ARCHITECTURE.md §6. When the pipeline moves to incremental publishing, these examples can be regenerated from real output.",
+  "validationNote": "The Phase 1 flagship stores immutable source releases under sourceHistory. The site generates its embedded-release record, compiledRelease, and versionedRelease from that history. The build validates the source releases and compiled release against the canonical OCDS 1.1.5 release schema, the versioned release against the canonical versioned-release schema, and the assembled package against the record-package schema. The later examples remain structurally checked legacy fixtures until their chapter is implemented."
+}

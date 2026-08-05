@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "id": "dole-computer-upgrades-2002",
+    "title": "Computer Upgrades for DOLE Main, 2002",
+    "description": "A contracting process with an award but NO recorded contract. The flagship example of data gaps: OCDS's structured record makes the missing contract visible (a dangling award with no contracts[] referencing it), where a flat export hides the gap entirely. Represents the ~19% of PhilGEPS processes with awards but no contract in the export.",
+    "shape": "award-only",
+    "fictional": true,
+    "shapeNote": "Shaped on real PhilGEPS record ocds-philgeps-1470-department-of-labor-and-employment-main. The real record DOES have a contract; this example deliberately omits it to represent the ~19% award-only bucket (measured in ocds/sample/compiled_releases.jsonl) and to teach how gaps appear in OCDS. See gapAnalysis below.",
+    "ocdsVersion": "1.1.5",
+    "teachingFocus": "data-gaps"
+  },
+
+  "event": {
+    "buyer": "Department of Labor and Employment - Main",
+    "need": "Upgrade 3 units of computers.",
+    "noticeDate": "2002-01-10",
+    "method": "Shopping / Local Purchase",
+    "story": "DOLE posts a small-value notice for computer upgrades via Shopping. A supplier is selected and the award is made — but the contract record is never captured in the export. The process is 'complete' as far as the tender and award go, but the lifecycle is partial from the data's point of view."
+  },
+
+  "rawRow": {
+    "_source_file": "Bid Notice and Award Details 2002.xlsx",
+    "_source_schema": "schema_1",
+    "Organization Name": "DEPARTMENT OF LABOR and EMPLOYMENT - Main",
+    "Reference ID": "1470",
+    "Solicitation No.": "libby01",
+    "Notice Type": "Shopping",
+    "Posted Date": "2002-01-10",
+    "Closing Date": "2002-01-14",
+    "Award Date": "2002-01-08",
+    "Award Title": "Upgrades of 3 units computer",
+    "Awardee Corporate Title": "(supplier in source; simplified here)",
+    "Contract Amount": null,
+    "Award Amount": 107850,
+    "Notice Status": "Awarded"
+  },
+  "rawColumns": [
+    { "name": "Organization Name", "description": "Buyer / procuring entity" },
+    { "name": "Reference ID", "description": "Process identifier" },
+    { "name": "Solicitation No.", "description": "Human-readable label" },
+    { "name": "Notice Type", "description": "Procurement method" },
+    { "name": "Posted Date", "description": "Notice date" },
+    { "name": "Award Date", "description": "Award date (note: predates posted date in the source — a known PhilGEPS data-quality issue)" },
+    { "name": "Award Amount", "description": "Award value in PHP" }
+  ],
+
+  "canonicalRow": {
+    "bid_reference_no": "1470",
+    "solicitation_no": "libby01",
+    "procuring_entity": "DEPARTMENT OF LABOR and EMPLOYMENT - Main",
+    "notice_type": "Shopping",
+    "posted_date": "2002-01-10",
+    "closing_date": "2002-01-14",
+    "award_date": "2002-01-08",
+    "award_title": "Upgrades of 3 units computer",
+    "award_amount": 107850,
+    "contract_amount": null,
+    "notice_status": "Awarded"
+  },
+  "rawToCanonical": [
+    { "from": "Reference ID", "to": "bid_reference_no" },
+    { "from": "Solicitation No.", "to": "solicitation_no" },
+    { "from": "Organization Name", "to": "procuring_entity" },
+    { "from": "Posted Date", "to": "posted_date" },
+    { "from": "Closing Date", "to": "closing_date" },
+    { "from": "Award Date", "to": "award_date" },
+    { "from": "Award Amount", "to": "award_amount" }
+  ],
+  "canonicalToOcds": [
+    { "from": "bid_reference_no", "to": "ocid suffix + tender.id" },
+    { "from": "solicitation_no", "to": "philgeps:solicitationNo" },
+    { "from": "procuring_entity", "to": "parties[].name + buyer.name" },
+    { "from": "posted_date", "to": "tender.tenderPeriod.startDate" },
+    { "from": "award_date", "to": "awards[].date" },
+    { "from": "award_amount", "to": "awards[].value.amount" },
+    { "from": "contract_amount (null)", "to": "contracts[] ABSENT — gap, not null" }
+  ],
+
+  "ocid": "ocds-philgeps-1470-department-of-labor-and-employment-main",
+  "record": {
+    "releases": [
+      {
+        "id": "001",
+        "date": "2002-01-10",
+        "tag": ["tender"],
+        "summary": "Notice posted — computer upgrades via Shopping",
+        "url": "https://example-philgeps.gov.ph/releases/1470/001.json",
+        "partial": {
+          "ocid": "ocds-philgeps-1470-department-of-labor-and-employment-main",
+          "id": "001",
+          "date": "2002-01-10",
+          "tag": ["tender"],
+          "initiationType": "tender",
+          "tender": {
+            "id": "1470",
+            "title": "Upgrades of 3 units computer",
+            "status": "active",
+            "procurementMethod": "limited",
+            "procurementMethodDetails": "Shopping",
+            "value": { "amount": 250000, "currency": "PHP" },
+            "tenderPeriod": { "startDate": "2002-01-10", "endDate": "2002-01-14" }
+          }
+        }
+      },
+      {
+        "id": "002",
+        "date": "2002-01-08",
+        "tag": ["award"],
+        "summary": "Award made (note: award date predates notice date — data quality issue preserved)",
+        "url": "https://example-philgeps.gov.ph/releases/1470/002.json",
+        "partial": {
+          "ocid": "ocds-philgeps-1470-department-of-labor-and-employment-main",
+          "id": "002",
+          "date": "2002-01-08",
+          "tag": ["award"],
+          "initiationType": "tender",
+          "awards": [{
+            "id": "1470",
+            "title": "Upgrades of 3 units computer",
+            "status": "active",
+            "date": "2002-01-08",
+            "value": { "amount": 107850, "currency": "PHP" }
+          }]
+        }
+      }
+    ],
+
+    "compiledRelease": {
+      "ocid": "ocds-philgeps-1470-department-of-labor-and-employment-main",
+      "id": "1470",
+      "date": "2002-01-10",
+      "tag": ["compiled"],
+      "initiationType": "tender",
+      "parties": [
+        { "id": "department-of-labor-and-employment-main", "name": "DEPARTMENT OF LABOR and EMPLOYMENT - Main", "roles": ["buyer", "procuringEntity"] }
+      ],
+      "buyer": { "id": "department-of-labor-and-employment-main", "name": "DEPARTMENT OF LABOR and EMPLOYMENT - Main" },
+      "tender": {
+        "id": "1470",
+        "title": "Upgrades of 3 units computer",
+        "status": "complete",
+        "procurementMethod": "limited",
+        "procurementMethodDetails": "Shopping",
+        "value": { "amount": 250000, "currency": "PHP" },
+        "tenderPeriod": { "startDate": "2002-01-10", "endDate": "2002-01-14" },
+        "procuringEntity": { "id": "department-of-labor-and-employment-main", "name": "DEPARTMENT OF LABOR and EMPLOYMENT - Main" }
+      },
+      "awards": [{
+        "id": "1470",
+        "title": "Upgrades of 3 units computer",
+        "status": "active",
+        "date": "2002-01-08",
+        "value": { "amount": 107850, "currency": "PHP" }
+      }]
+    },
+
+    "versionedRelease": {
+      "ocid": "ocds-philgeps-1470-department-of-labor-and-employment-main",
+      "tender": {
+        "id": [{ "releaseID": "001", "releaseDate": "2002-01-10", "value": "1470" }],
+        "status": [
+          { "releaseID": "001", "releaseDate": "2002-01-10", "value": "active" }
+        ]
+      },
+      "awards": {
+        "1470": {
+          "status": [{ "releaseID": "002", "releaseDate": "2002-01-08", "value": "active" }]
+        }
+      }
+    }
+  },
+
+  "redFlags": [
+    {
+      "code": "R024",
+      "name": "Short tender period",
+      "paths": ["tender.tenderPeriod.startDate", "tender.tenderPeriod.endDate"],
+      "status": "flagged",
+      "explanation": "Period 2002-01-10 → 2002-01-14 = 4 days. Very short — below typical 7-day floor for Shopping. FLAGGED."
+    },
+    {
+      "code": "date-order",
+      "name": "Award before notice (data quality)",
+      "paths": ["tender.tenderPeriod.startDate", "awards[].date"],
+      "status": "flagged",
+      "explanation": "Award date (2002-01-08) predates the notice date (2002-01-10). Either a data-entry error or a backdated notice — a real data-quality issue, preserved honestly from the source."
+    },
+    {
+      "code": "missing-contract",
+      "name": "Award without contract",
+      "paths": ["awards[].id", "contracts[].awardID"],
+      "status": "flagged",
+      "explanation": "An award exists (awards[0].id = '1470', status 'active') but no contract links back to it — contracts[] is ABSENT, not empty. Either the contract wasn't captured, or it was never formalized. This is the case for ~19% of PhilGEPS processes. See gapAnalysis below for what this gap blocks.",
+      "blockedByGap": true
+    }
+  ],
+
+  "trace": [
+    {
+      "datum": "Reference ID",
+      "value": "1470",
+      "steps": [
+        { "station": "raw",       "value": "1470",                                                              "note": "preserved verbatim" },
+        { "station": "canonical", "value": "bid_reference_no: 1470",                                            "note": "" },
+        { "station": "released",  "value": "ocid: ocds-philgeps-1470-... + tender.id: 1470 + awards[0].id: 1470", "note": "ONE source datum populated THREE OCDS identifier fields across two releases. Confusing them is the classic bug." },
+        { "station": "analyzed",  "value": "(identity key)",                                                    "note": "Join key for cross-process indicators." }
+      ]
+    },
+    {
+      "datum": "Award No.",
+      "value": "1470",
+      "steps": [
+        { "station": "raw",       "value": "1470",                                  "note": "preserved as Award No." },
+        { "station": "canonical", "value": "award_reference_no: 1470",              "note": "" },
+        { "station": "released",  "value": "awards[0].id: 1470",                    "note": "Published in release 002. The award exists." },
+        { "station": "released",  "value": "contracts[].awardID: (none)",           "note": "DANGLING — no contract references this awardID. This is the gap made visible. A flat export would just show an empty Contract Amount cell; OCDS shows an unreferenced award object, which machines and humans can detect." },
+        { "station": "analyzed",  "value": "missing-contract indicator FIRES",      "note": "The gap itself becomes a signal. Future contract-value indicators (e.g. final price vs award value) cannot run — see gapAnalysis.blockedIndicators." }
+      ]
+    }
+  ],
+
+  "gapAnalysis": {
+    "_purpose": "The teaching payload of this example. OCDS's structured record makes data gaps visible in a way flat exports hide. This section enumerates what's missing, how it shows up in the record, and what it blocks downstream.",
+    "shape": "award-only",
+    "percentInRealData": 19,
+    "flatExportView": {
+      "whatYouSee": "A row with Award No. = 1470, Award Amount = 107850, and a blank Contract Amount cell.",
+      "whyItHidesTheGap": "A blank cell is ambiguous — it could mean 'not yet awarded', 'contract not captured', 'no contract required', or 'data entry skipped'. There's no structural signal that an award was made but never linked to a contract. The gap is invisible unless you already know to ask."
+    },
+    "ocdsView": {
+      "whatYouSee": "awards[0] exists with id='1470', status='active', value=107850. contracts[] is ABSENT (not an empty array — the key is missing).",
+      "whyItShowsTheGap": "The award object is a first-class citizen with a stable id. Any contract that formalises this award MUST reference it via contracts[].awardID = '1470'. The absence of any such reference is a machine-detectable signal: an 'active' award with no implementing contract. A validator (libcoveocds) or a simple jq query can find every dangling award in a dataset — impossible in a flat export.",
+      "queryToFindIt": "jq 'select(.awards | length > 0) | select((.contracts // []) | map(.awardID) | index(.awards[0].id) | not)' compiled_releases.jsonl"
+    },
+    "blockedIndicators": [
+      {
+        "code": "final-vs-award-value",
+        "name": "Final contract value vs award value",
+        "blockedBy": "contracts[].value.amount is absent",
+        "whyItMatters": "A common integrity check: does the final price exceed the award price? Cannot run without the contract value. In real data this is one of the most basic price-integrity signals, and it's blocked for ~19% of PhilGEPS processes."
+      },
+      {
+        "code": "contract-timeliness",
+        "name": "Time from award to contract signing",
+        "blockedBy": "contracts[].date is absent",
+        "whyItMatters": "Long gaps between award and contract can signal procedural issues. Cannot compute without the contract date."
+      },
+      {
+        "code": "implementation-delivery",
+        "name": "Delivery / transaction tracking",
+        "blockedBy": "contracts[].implementation.transactions[] is absent",
+        "whyItMatters": "Whether goods were actually delivered and paid for. Entirely opaque in this record."
+      }
+    ],
+    "teachingNote": "This is the core argument for OCDS over flat exports: structure turns ambiguity into signal. A blank cell in a spreadsheet says nothing; a missing contracts[] with an active awards[0] says 'this award was never formalised, and here is exactly which award'. The primer's Analyzed station should let the learner toggle this gap on/off and watch the blocked indicators appear/disable in real time."
+  }
+}

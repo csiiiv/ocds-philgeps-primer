@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "id": "chr-office-tables-2002",
+    "title": "Office Tables & Chairs for Commission on Human Rights, 2002",
+    "description": "A cancelled contracting process — the tender was posted and then cancelled before any award. Represents the ~70% of PhilGEPS processes that never reach an award (per ocds/sample/compiled_releases.jsonl).",
+    "shape": "cancelled",
+    "fictional": true,
+    "shapeNote": "Shaped on a real PhilGEPS record (ocds-philgeps-4650-commission-on-human-rights) but with an illustrative release history. The real pipeline emits one compiled release; the multi-release history here is illustrative of the target incremental model.",
+    "ocdsVersion": "1.1.5"
+  },
+
+  "event": {
+    "buyer": "Commission on Human Rights",
+    "need": "Office tables and chairs for a new floor.",
+    "noticeDate": "2002-02-14",
+    "method": "Limited / Local Purchase",
+    "story": "CHR posts a notice for office furniture. The tender period passes with no qualifying bids (or a procedural defect is found), and the notice is cancelled. No award, no contract — the process ends at the tender stage."
+  },
+
+  "rawRow": {
+    "_source_file": "Bid Notice and Award Details 2002.xlsx",
+    "_source_schema": "schema_1",
+    "Organization Name": "COMMISSION ON HUMAN RIGHTS",
+    "Reference ID": "4650",
+    "Solicitation No.": "CHR-002-2002",
+    "Notice Type": "Local Purchase",
+    "Posted Date": "2002-02-14",
+    "Closing Date": "2002-02-28",
+    "Notice Status": "Cancelled",
+    "Award No.": null,
+    "Awardee Corporate Title": null
+  },
+  "rawColumns": [
+    { "name": "Organization Name", "description": "Buyer / procuring entity (schema_1 spelling)" },
+    { "name": "Reference ID", "description": "Process identifier in schema_1 — maps to ocid + tender.id" },
+    { "name": "Solicitation No.", "description": "Human-readable label" },
+    { "name": "Posted Date", "description": "Notice date" },
+    { "name": "Closing Date", "description": "Bid deadline" },
+    { "name": "Notice Status", "description": "Process status (Cancelled / Awarded / Unsuccessful)" }
+  ],
+
+  "canonicalRow": {
+    "bid_reference_no": "4650",
+    "solicitation_no": "CHR-002-2002",
+    "procuring_entity": "COMMISSION ON HUMAN RIGHTS",
+    "notice_type": "Local Purchase",
+    "posted_date": "2002-02-14",
+    "closing_date": "2002-02-28",
+    "notice_status": "Cancelled",
+    "award_reference_no": null,
+    "awardee": null
+  },
+  "rawToCanonical": [
+    { "from": "Reference ID", "to": "bid_reference_no" },
+    { "from": "Solicitation No.", "to": "solicitation_no" },
+    { "from": "Organization Name", "to": "procuring_entity" },
+    { "from": "Posted Date", "to": "posted_date" },
+    { "from": "Closing Date", "to": "closing_date" },
+    { "from": "Notice Status", "to": "notice_status" }
+  ],
+  "canonicalToOcds": [
+    { "from": "bid_reference_no", "to": "ocid suffix + tender.id" },
+    { "from": "solicitation_no", "to": "philgeps:solicitationNo" },
+    { "from": "procuring_entity", "to": "parties[].name + buyer.name" },
+    { "from": "posted_date", "to": "tender.tenderPeriod.startDate" },
+    { "from": "closing_date", "to": "tender.tenderPeriod.endDate" },
+    { "from": "notice_status (Cancelled)", "to": "tender.status = cancelled (tag: tenderCancellation)" }
+  ],
+
+  "ocid": "ocds-philgeps-4650-commission-on-human-rights",
+  "record": {
+    "releases": [
+      {
+        "id": "001",
+        "date": "2002-02-14",
+        "tag": ["tender"],
+        "summary": "Notice posted — office tables & chairs via Local Purchase",
+        "url": "https://example-philgeps.gov.ph/releases/4650/001.json",
+        "partial": {
+          "ocid": "ocds-philgeps-4650-commission-on-human-rights",
+          "id": "001",
+          "date": "2002-02-14",
+          "tag": ["tender"],
+          "initiationType": "tender",
+          "tender": {
+            "id": "4650",
+            "title": "Office Tables & Chairs",
+            "status": "active",
+            "procurementMethod": "limited",
+            "procurementMethodDetails": "Local Purchase",
+            "value": { "amount": 500000, "currency": "PHP" },
+            "tenderPeriod": { "startDate": "2002-02-14", "endDate": "2002-02-28" }
+          }
+        }
+      },
+      {
+        "id": "002",
+        "date": "2002-03-05",
+        "tag": ["tenderCancellation"],
+        "summary": "Notice cancelled — no qualifying bids received",
+        "url": "https://example-philgeps.gov.ph/releases/4650/002.json",
+        "partial": {
+          "ocid": "ocds-philgeps-4650-commission-on-human-rights",
+          "id": "002",
+          "date": "2002-03-05",
+          "tag": ["tenderCancellation"],
+          "initiationType": "tender",
+          "tender": { "id": "4650", "status": "cancelled" }
+        }
+      }
+    ],
+
+    "compiledRelease": {
+      "ocid": "ocds-philgeps-4650-commission-on-human-rights",
+      "id": "4650",
+      "date": "2002-03-05",
+      "tag": ["compiled"],
+      "initiationType": "tender",
+      "parties": [
+        { "id": "commission-on-human-rights", "name": "COMMISSION ON HUMAN RIGHTS", "roles": ["buyer", "procuringEntity"] }
+      ],
+      "buyer": { "id": "commission-on-human-rights", "name": "COMMISSION ON HUMAN RIGHTS" },
+      "tender": {
+        "id": "4650",
+        "title": "Office Tables & Chairs",
+        "status": "cancelled",
+        "procurementMethod": "limited",
+        "procurementMethodDetails": "Local Purchase",
+        "value": { "amount": 500000, "currency": "PHP" },
+        "tenderPeriod": { "startDate": "2002-02-14", "endDate": "2002-02-28" },
+        "procuringEntity": { "id": "commission-on-human-rights", "name": "COMMISSION ON HUMAN RIGHTS" }
+      }
+    },
+
+    "versionedRelease": {
+      "ocid": "ocds-philgeps-4650-commission-on-human-rights",
+      "tender": {
+        "id": [{ "releaseID": "001", "releaseDate": "2002-02-14", "value": "4650" }],
+        "status": [
+          { "releaseID": "001", "releaseDate": "2002-02-14", "value": "active" },
+          { "releaseID": "002", "releaseDate": "2002-03-05", "value": "cancelled" }
+        ]
+      }
+    }
+  },
+
+  "redFlags": [
+    {
+      "code": "R003",
+      "name": "Single bid",
+      "paths": ["tender.numberOfTenderers", "bids.statistics"],
+      "status": "no_data",
+      "explanation": "No bids were recorded — the process was cancelled. numberOfTenderers is absent. Most red-flag indicators cannot run on a cancelled process; this is the correct outcome."
+    }
+  ],
+
+  "trace": [
+    {
+      "datum": "Reference ID",
+      "value": "4650",
+      "steps": [
+        { "station": "raw",       "value": "4650",                                            "note": "preserved verbatim" },
+        { "station": "canonical", "value": "bid_reference_no: 4650",                          "note": "" },
+        { "station": "released",  "value": "ocid: ocds-philgeps-4650-commission-on-human-rights + tender.id: 4650", "note": "Same datum, two layers — published in release 001, carried through to release 002." },
+        { "station": "analyzed",  "value": "(identity key; no award to analyze)",             "note": "Process cancelled — no award/contract indicators apply." }
+      ]
+    }
+  ]
+}

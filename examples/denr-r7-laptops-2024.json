@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "id": "denr-r7-laptops-2024",
+    "title": "Laptops for DENR Region VII, 2024",
+    "description": "A complete contracting process: tender (with one amendment) → award → contract → implementation. The flagship example — exercises every station of the journey and produces both clean and flagged indicators.",
+    "shape": "full-lifecycle",
+    "fictional": true,
+    "shapeNote": "Only ~10% of real PhilGEPS processes reach the award+contract stage (per ocds/sample/compiled_releases.jsonl). This example represents that minority.",
+    "ocdsVersion": "1.1.5"
+  },
+
+  "event": {
+    "buyer": "DENR Region VII",
+    "need": "50 laptops to equip field offices for field data collection.",
+    "noticeDate": "2024-03-01",
+    "method": "Public bidding",
+    "story": "A regional office needs to equip field staff. The notice goes up on PhilGEPS, but only one supplier submits a bid. After evaluation, the contract is awarded to ABC Computer Trading and signed a few weeks later. Two delivery milestones follow, although the completion date of the final delivery is not published."
+  },
+
+  "rawRow": {
+    "_source_file": "2024.csv",
+    "_source_schema": "schema_3",
+    "Procuring Entity": "DENR Region VII",
+    "Bid Reference No.": "2024-001",
+    "Solicitation No.": "DENR-R7-2024-001",
+    "Notice Type": "Invitation to Bid",
+    "Posted Date": "2024-03-01",
+    "Closing Date": "2024-03-20",
+    "Notice Status": "Active"
+  },
+  "rawColumns": [
+    { "name": "Procuring Entity", "description": "The buyer / procuring entity" },
+    { "name": "Bid Reference No.", "description": "Strongest tender-stage process key observed in the current exports — used provisionally for ocid + tender.id" },
+    { "name": "Solicitation No.", "description": "Human-readable label — NOT the process key (see PROCESS_IDENTITY_ANALYSIS.md)" },
+    { "name": "Notice Type", "description": "Procurement method label" },
+    { "name": "Posted Date", "description": "When the notice went live" },
+    { "name": "Closing Date", "description": "Bid submission deadline" },
+    { "name": "Notice Status", "description": "Status known when this notice event was exported" }
+  ],
+
+  "canonicalRow": {
+    "bid_reference_no": "2024-001",
+    "solicitation_no": "DENR-R7-2024-001",
+    "procuring_entity": "DENR Region VII",
+    "notice_type": "Invitation to Bid",
+    "posted_date": "2024-03-01",
+    "closing_date": "2024-03-20",
+    "notice_status": "Active"
+  },
+  "rawToCanonical": [
+    { "from": "Bid Reference No.", "to": "bid_reference_no" },
+    { "from": "Solicitation No.", "to": "solicitation_no" },
+    { "from": "Procuring Entity", "to": "procuring_entity" },
+    { "from": "Posted Date", "to": "posted_date" },
+    { "from": "Closing Date", "to": "closing_date" },
+    { "from": "Notice Status", "to": "notice_status" }
+  ],
+  "canonicalToOcds": [
+    { "from": "bid_reference_no", "to": "provisional ocid suffix for this dataset + tender.id" },
+    { "from": "solicitation_no", "to": "philgeps:solicitationNo (NOT tender.id)" },
+    { "from": "procuring_entity", "to": "parties[].name + buyer.name + tender.procuringEntity.name" },
+    { "from": "posted_date", "to": "tender.tenderPeriod.startDate" },
+    { "from": "closing_date", "to": "tender.tenderPeriod.endDate" },
+    { "from": "notice_status", "to": "tender.status" }
+  ],
+
+  "ocid": "ocds-philgeps-2024-001",
+  "sourceHistory": {
+    "releases": [
+      {
+        "id": "001",
+        "date": "2024-03-01T09:00:00+08:00",
+        "tag": ["tender"],
+        "summary": "Notice posted — invitation to bid for 50 laptops",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/001.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "001",
+          "date": "2024-03-01T09:00:00+08:00",
+          "tag": ["tender"],
+          "initiationType": "tender",
+          "parties": [
+            { "id": "denr-region-vii", "name": "DENR Region VII", "roles": ["buyer", "procuringEntity"] }
+          ],
+          "buyer": { "id": "denr-region-vii", "name": "DENR Region VII" },
+          "tender": {
+            "id": "2024-001",
+            "title": "Supply and Delivery of Laptop Computers",
+            "status": "active",
+            "procurementMethod": "open",
+            "value": { "amount": 2850000, "currency": "PHP" },
+            "tenderPeriod": { "startDate": "2024-03-01T09:00:00+08:00", "endDate": "2024-03-20T17:00:00+08:00" },
+            "procuringEntity": { "id": "denr-region-vii", "name": "DENR Region VII" }
+          }
+        }
+      },
+      {
+        "id": "002",
+        "date": "2024-03-18T10:00:00+08:00",
+        "tag": ["tenderAmendment"],
+        "summary": "Deadline extended from 2024-03-20 to 2024-03-25",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/002.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "002",
+          "date": "2024-03-18T10:00:00+08:00",
+          "tag": ["tenderAmendment"],
+          "initiationType": "tender",
+          "tender": {
+            "id": "2024-001",
+            "tenderPeriod": { "endDate": "2024-03-25T17:00:00+08:00" },
+            "amendments": [{
+              "id": "amendment-001",
+              "date": "2024-03-18T10:00:00+08:00",
+              "description": "The bid submission deadline was extended by five days.",
+              "rationale": "Allow suppliers additional preparation time.",
+              "amendsReleaseID": "001",
+              "releaseID": "002"
+            }]
+          }
+        }
+      },
+      {
+        "id": "003",
+        "date": "2024-03-26T09:00:00+08:00",
+        "tag": ["tender"],
+        "summary": "One bid received and recorded (ABC Computer Trading)",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/003.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "003",
+          "date": "2024-03-26T09:00:00+08:00",
+          "tag": ["tender"],
+          "initiationType": "tender",
+          "parties": [{ "id": "abc-computer-trading", "name": "ABC Computer Trading", "roles": ["tenderer"] }],
+          "tender": { "id": "2024-001", "numberOfTenderers": 1, "status": "complete" }
+        }
+      },
+      {
+        "id": "004",
+        "date": "2024-04-05T14:00:00+08:00",
+        "tag": ["award"],
+        "summary": "Awarded to ABC Computer Trading",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/004.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "004",
+          "date": "2024-04-05T14:00:00+08:00",
+          "tag": ["award"],
+          "initiationType": "tender",
+          "parties": [{ "id": "abc-computer-trading", "name": "ABC Computer Trading", "roles": ["tenderer", "supplier"] }],
+          "awards": [{
+            "id": "aw-2024-001-01",
+            "title": "Supply and Delivery of Laptop Computers",
+            "status": "active",
+            "date": "2024-04-05T14:00:00+08:00",
+            "value": { "amount": 2850000, "currency": "PHP" },
+            "suppliers": [{ "id": "abc-computer-trading", "name": "ABC Computer Trading" }]
+          }]
+        }
+      },
+      {
+        "id": "005",
+        "date": "2024-04-20T10:00:00+08:00",
+        "tag": ["contract"],
+        "summary": "Contract signed",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/005.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "005",
+          "date": "2024-04-20T10:00:00+08:00",
+          "tag": ["contract"],
+          "initiationType": "tender",
+          "contracts": [{
+            "id": "po-2024-001-01",
+            "awardID": "aw-2024-001-01",
+            "status": "active",
+            "title": "Supply and Delivery of Laptop Computers",
+            "value": { "amount": 2850000, "currency": "PHP" }
+          }]
+        }
+      },
+      {
+        "id": "006",
+        "date": "2024-06-10T16:00:00+08:00",
+        "tag": ["implementation"],
+        "summary": "First delivery — 25 laptops received",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/006.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "006",
+          "date": "2024-06-10T16:00:00+08:00",
+          "tag": ["implementation"],
+          "initiationType": "tender",
+          "contracts": [{
+            "id": "po-2024-001-01",
+            "awardID": "aw-2024-001-01",
+            "implementation": {
+              "milestones": [{
+                "id": "delivery-001",
+                "title": "First delivery — 25 laptops",
+                "type": "delivery",
+                "status": "met",
+                "dateMet": "2024-06-10T16:00:00+08:00"
+              }]
+            }
+          }]
+        }
+      },
+      {
+        "id": "007",
+        "date": "2024-07-15T16:00:00+08:00",
+        "tag": ["implementation"],
+        "summary": "Final delivery — remaining 25 laptops received",
+        "url": "https://example-philgeps.gov.ph/releases/2024-001/007.json",
+        "partial": {
+          "ocid": "ocds-philgeps-2024-001",
+          "id": "007",
+          "date": "2024-07-15T16:00:00+08:00",
+          "tag": ["implementation"],
+          "initiationType": "tender",
+          "contracts": [{
+            "id": "po-2024-001-01",
+            "awardID": "aw-2024-001-01",
+            "implementation": {
+              "milestones": [{
+                "id": "delivery-002",
+                "title": "Final delivery — remaining 25 laptops",
+                "type": "delivery",
+                "status": "met"
+              }]
+            }
+          }]
+        }
+      }
+    ]
+  },
+
+  "trace": [
+    {
+      "datum": "Bid Reference No.",
+      "value": "2024-001",
+      "steps": [
+        { "station": "raw",      "value": "2024-001",                  "note": "preserved verbatim as 'Bid Reference No.'" },
+        { "station": "canonical","value": "bid_reference_no: 2024-001","note": "snake_cased into the canonical model" },
+        { "station": "released", "value": "ocid: ocds-philgeps-2024-001 + tender.id: 2024-001", "note": "becomes BOTH the ocid suffix (process-level) AND tender.id (in-object). Published in release 001, unchanged since." },
+        { "station": "analyzed", "value": "(identity key)",            "note": "Cardinal keys on ocid; this datum is the join key, not an indicator input" }
+      ]
+    },
+    {
+      "datum": "Closing Date",
+      "value": "2024-03-20",
+      "steps": [
+        { "station": "raw",       "value": "2024-03-20",                                  "note": "preserved verbatim as 'Closing Date'" },
+        { "station": "canonical", "value": "closing_date: 2024-03-20",                    "note": "" },
+        { "station": "released",  "value": "tender.tenderPeriod.endDate: 2024-03-20 → 2024-03-25", "note": "CHANGED by release 002 (tenderAmendment). Visible in the versioned release." },
+        { "station": "analyzed",  "value": "feeds R024 (short tender period)",            "note": "R024 computes the period from startDate→endDate; uses the CURRENT (compiled) value, but the versioned release shows the period was extended." }
+      ]
+    }
+  ]
+}
