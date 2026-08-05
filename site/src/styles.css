@@ -918,7 +918,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .knowledge-question__difficulty--hard { background: var(--warn-soft); color: var(--ink-soft); }
 .knowledge-question__difficulty--bonus { background: var(--line); color: var(--ink); border: 1px solid var(--ink-mute); }
 .knowledge-question__check { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--ok); color: white; font-size: 11px; font-weight: 800; }
-.knowledge-question__index { position: absolute; top: 12px; right: 14px; color: var(--ink-mute); font-size: 9px; font-weight: 700; letter-spacing: .04em; }
+.knowledge-question__index { flex: none; color: var(--ink-mute); font-size: 9px; font-weight: 700; letter-spacing: .04em; }
 .knowledge-question .knowledge-check__options { margin-top: 10px; }
 .knowledge-question .knowledge-check__feedback { margin-top: 12px; }
 .knowledge-question__multi-hint { margin: 8px 0 0; color: var(--ink-mute); font-size: 11px; font-style: italic; }

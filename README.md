@@ -43,6 +43,21 @@ The implemented learning arc now moves from one clearly labelled synthetic journ
 
 The site currently has no documented public deployment or organizational owner. Run and inspect it locally unless a verified deployment target is added explicitly.
 
+## Deployment (GitHub Pages)
+
+A workflow at `.github/workflows/deploy.yml` builds the site on every push to `main` and publishes it to GitHub Pages at the project page URL.
+
+To enable it:
+
+1. Push the repo to GitHub.
+2. In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
+3. Push to `main`. The workflow installs, builds with `VITE_BASE=/ocds-philgeps-primer/`, and deploys the `site/dist` artifact.
+
+Notes:
+
+- The app uses `HashRouter`, so all routes live after `#` (e.g. `…/ocds-philgeps-primer/#/journey/3-mapped`). This makes refreshes and direct links work on GitHub Pages, which has no SPA fallback.
+- `VITE_BASE` only affects production builds; `npm run dev` still serves at `/` locally.
+
 ## Relationship to the rest of the workspace
 
 - The primer is a *teaching* layer. The `ocds_mapping_explorer` is the *working tool*. The docs under `docs/` and `philgeps_schema_analysis/docs/` are the *source material*.

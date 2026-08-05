@@ -83,12 +83,28 @@ interface KnowledgeQuestionProps {
 }
 
 function KnowledgeQuestion({ stationId, difficulty, index, definition, onCorrect }: KnowledgeQuestionProps) {
-  const [singleSelection, setSingleSelection] = useState("");
-  const [multiSelection, setMultiSelection] = useState<string[]>([]);
-  const [evaluated, setEvaluated] = useState(false);
   const { markDifficultyPassed, isDifficultyPassed } = useStationProgress();
   const meta = DIFFICULTY_META[difficulty];
   const previouslyPassed = isDifficultyPassed(stationId, difficulty);
+
+  // A difficulty can only be recorded as "passed" by submitting the correct
+  // answer, so on first mount we can faithfully replay that submission: the
+  // option(s) are checked, the feedback block reappears, and the green
+  // "correct" styling is restored after a navigation away and back. Because
+  // this is computed once per mount from the persisted record, it stays in
+  // sync without re-introducing stale state on subsequent in-page interactions.
+  const seedSelection = (): string | string[] => {
+    if (!previouslyPassed) return definition.mode === "single" ? "" : [];
+    return definition.mode === "single" ? definition.answer : [...definition.answers];
+  };
+
+  const [singleSelection, setSingleSelection] = useState<string>(() =>
+    definition.mode === "single" ? (seedSelection() as string) : ""
+  );
+  const [multiSelection, setMultiSelection] = useState<string[]>(() =>
+    definition.mode === "multi" ? (seedSelection() as string[]) : []
+  );
+  const [evaluated, setEvaluated] = useState(previouslyPassed);
 
   const isCorrect = definition.mode === "single"
     ? evaluated && singleSelection === definition.answer
@@ -124,6 +140,7 @@ function KnowledgeQuestion({ stationId, difficulty, index, definition, onCorrect
         <span className={`knowledge-question__difficulty knowledge-question__difficulty--${difficulty}`}>{meta.label}</span>
         <span className="knowledge-question__hint">{meta.description}</span>
         {previouslyPassed && <span className="knowledge-question__check" aria-label={`${meta.label} passed`}>✓</span>}
+        <span className="knowledge-question__index" aria-hidden="true">{index + 1} / {DIFFICULTIES.length}</span>
       </div>
       <fieldset>
         <legend id={idBase}>{definition.question}</legend>
@@ -176,7 +193,6 @@ function KnowledgeQuestion({ stationId, difficulty, index, definition, onCorrect
           )}
         </div>
       )}
-      <span className="knowledge-question__index" aria-hidden="true">{index + 1} / {DIFFICULTIES.length}</span>
     </li>
   );
 }
