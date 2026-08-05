@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv-draft-04";
@@ -6,7 +6,12 @@ import addFormats from "ajv-formats";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const examplesDir = resolve(here, "../../examples");
-const referencesDir = resolve(here, "../../../references");
+// Vendored copy of the OCDS 1.1 standard schemas, checked in so the build is
+// self-contained and runs in CI. The optional workspace fallback keeps older
+// local setups working where the schemas live in a sibling /references folder.
+const vendoredSchemasDir = resolve(here, "../schemas");
+const workspaceSchemasDir = resolve(here, "../../../references");
+const referencesDir = existsSync(vendoredSchemasDir) ? vendoredSchemasDir : workspaceSchemasDir;
 const manifest = readJson(join(examplesDir, "manifest.json"));
 const files = new Set(readdirSync(examplesDir).filter((name) => name.endsWith(".json")));
 const errors = [];

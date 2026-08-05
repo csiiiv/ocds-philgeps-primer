@@ -1,0 +1,18 @@
+{
+  "id": "https://standard.open-contracting.org/schema/1__1__5/release-package-schema.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Schema for an Open Contracting Release Package",
+  "description": "The release package contains a list of releases along with some publishing metadata.",
+  "type": "object",
+  "required": ["uri", "publisher", "publishedDate", "releases", "version"],
+  "properties": {
+    "uri": { "type": "string", "format": "uri" },
+    "version": { "type": "string", "pattern": "^(\\d+\\.)(\\d+)$" },
+    "extensions": { "type": "array", "items": { "type": "string", "format": "uri" } },
+    "publishedDate": { "type": "string", "format": "date-time" },
+    "releases": { "type": "array", "minItems": 1, "items": { "$ref": "https://standard.open-contracting.org/schema/1__1__5/release-schema.json" }, "uniqueItems": true },
+    "publisher": { "type": "object", "properties": { "name": { "type": "string" }, "scheme": { "type": ["string", "null"] }, "uid": { "type": ["string", "null"] }, "uri": { "type": ["string", "null"], "format": "uri" } }, "required": ["name"] },
+    "license": { "type": ["string", "null"], "format": "uri" },
+    "publicationPolicy": { "type": ["string", "null"], "format": "uri" }
+  }
+}
