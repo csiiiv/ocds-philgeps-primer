@@ -10,7 +10,7 @@ import { STATIONS, STATION_BY_ID, type StationId } from "../content/stations";
 type ScopeFilter = "All" | ReferenceScope;
 type StationFilter = "All" | StationId;
 
-const SCOPES: ScopeFilter[] = ["All", "primer", "schema", "guidance", "workspace"];
+const SCOPES: ScopeFilter[] = ["All", "primer", "schema", "guidance"];
 
 export function ReferencePage() {
   const [scope, setScope] = useState<ScopeFilter>("All");
@@ -30,7 +30,7 @@ export function ReferencePage() {
       <p className="eyebrow">Reference</p>
       <h1>Reference index</h1>
       <p className="lede">
-        Every authoritative source cited by this primer. External links point to verified Open Contracting Partnership documentation; workspace links use relative paths from the repository root and never imply a public URL.
+        Every authoritative source cited by this primer. All links point to verified Open Contracting Partnership documentation.
       </p>
 
       <div className="reference-controls">
@@ -65,7 +65,7 @@ export function ReferencePage() {
               </div>
               <p>{reference.description}</p>
               <div className="reference-item__meta">
-                <span>{reference.publisher ?? (reference.scope === "workspace" ? "Workspace document" : "External")}</span>
+                <span>{reference.publisher ?? "External"}</span>
                 {reference.stations && reference.stations.length > 0 && (
                   <span className="reference-item__stations">
                     {reference.stations.map((id) => (

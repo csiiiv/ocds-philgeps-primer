@@ -14,7 +14,7 @@ export function AboutPage() {
       <section>
         <h2>Project identity</h2>
         <p>
-          This is an organization-neutral local proof of concept. Its location inside a wider workspace does not establish an owner, publisher, public website, repository, deployment target, or package namespace. The first journey uses clearly labelled synthetic data; later chapters use audited transformations of real source rows preserved beside their results.
+          This is an organization-neutral proof of concept. No directory name, file path, or internal label establishes an owner, publisher, public website, repository, deployment target, or package namespace. The first journey uses clearly labelled synthetic data; later chapters use audited transformations of real source rows preserved beside their results.
         </p>
         <ul className="about-bullets">
           <li>Do not construct URLs, publisher names, repository links, package scopes, or organizational affiliations from directory names.</li>
@@ -38,7 +38,7 @@ export function AboutPage() {
         <h2>What this primer is not</h2>
         <ul className="about-bullets">
           <li>It does not replace the <a href="https://standard.open-contracting.org/latest/en/">official OCDS documentation</a>; it links to it.</li>
-          <li>It is not a data-publication tool — that is the workspace's <code>ocds_mapping_explorer</code>. The primer links out to the explorer for hands-on mapping.</li>
+          <li>It is a teaching site, not a data-publication tool or validator. For hands-on mapping and validation, use the tools linked from the official documentation.</li>
           <li>It is not a general OCDS merge implementation. The custom merge subset handles the base-schema structures exercised by the synthetic fixture and is not extension-aware.</li>
           <li>It is not a statistical sample of Philippine procurement. Process shapes are chosen for teaching; their percentages in the catalogue are contextual, not population estimates.</li>
         </ul>
@@ -54,7 +54,7 @@ export function AboutPage() {
       <section>
         <h2>Find the source</h2>
         <p>
-          The primer lives at <code>ocds_primer/</code> inside the workspace. The first chapter's flagship example is <code>examples/denr-r7-laptops-2024.json</code>; later chapters read <code>examples/poc_etl/</code>. The reference index below lists every authoritative source this primer cites.
+          The first chapter's flagship example is <code>examples/denr-r7-laptops-2024.json</code>; later chapters read <code>examples/poc_etl/</code>. The reference index below lists every authoritative source this primer cites.
         </p>
         <p>
           <Link className="eyebrow-link" to="/reference">Browse the reference index →</Link>

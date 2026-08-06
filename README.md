@@ -36,6 +36,7 @@ Read in this order:
 | 12 | [`12_publication_and_portfolio.md`](12_publication_and_portfolio.md) | Chapter 3 release-package assembly and drillable non-standard portfolio view |
 | 13 | [`13_field_explorer.md`](13_field_explorer.md) | Optional intermediate source-field-to-OCDS trace explorer |
 | 14 | [`14_glossary_and_search.md`](14_glossary_and_search.md) | Filterable glossary and client-side search contract |
+| 15 | [`15_faq.md`](15_faq.md) | Drafted FAQ content for the `/faq` page — primer scope, mental model, usage, data, and next steps |
 
 ## Status
 

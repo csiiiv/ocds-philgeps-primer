@@ -1,6 +1,6 @@
 import type { StationId } from "./stations";
 
-export type ReferenceScope = "primer" | "schema" | "guidance" | "workspace";
+export type ReferenceScope = "primer" | "schema" | "guidance";
 
 export interface CanonicalReference {
   id: string;
@@ -13,8 +13,7 @@ export interface CanonicalReference {
   description: string;
   /**
    * Optional publisher/organization label. Use "Open Contracting Partnership"
-   * for canonical standard material. Workspace docs use a relative path and
-   * omit the publisher.
+   * for canonical standard material.
    */
   publisher?: string;
 }
@@ -24,8 +23,10 @@ const OCP = "Open Contracting Partnership";
 /**
  * Canonical references linked from station prose and the Reference page.
  *
- * External links must point to verified authoritative sources. Workspace links
- * use relative paths from the repository root and never imply a public URL.
+ * Every link points to a verified, authoritative external source. The primer
+ * intentionally does not host or link internal workspace documents: those are
+ * written for this project team rather than for the public learner, and their
+ * concepts are already covered authoritatively by the sources below.
  */
 export const CANONICAL_REFERENCES: CanonicalReference[] = [
   {
@@ -91,67 +92,10 @@ export const CANONICAL_REFERENCES: CanonicalReference[] = [
     publisher: OCP,
     description: "Extension that structures individual bids under bids.details[].tenderers[]. Required when bid-level detail is published; must be declared at package level.",
   },
-  {
-    id: "pipeline-architecture",
-    title: "PhilGEPS pipeline architecture",
-    url: "../PHILGEPS_PIPELINE_ARCHITECTURE.md",
-    scope: "workspace",
-    stations: ["1-event", "2-extracted", "3-mapped"],
-    description: "The workspace's five-layer pipeline. Its diagram is the literal spine of the journey; Schema 3 columns drive Station 2.",
-  },
-  {
-    id: "release-package-guide",
-    title: "OCDS release package guide",
-    url: "../docs/OCDS_RELEASE_PACKAGE_GUIDE.md",
-    scope: "workspace",
-    stations: ["4-record"],
-    description: "Workspace notes on release packages and the five required package fields. Feeds the Publication & Portfolio chapter.",
-  },
-  {
-    id: "process-release-identity",
-    title: "OCDS process and release identity",
-    url: "../philgeps_schema_analysis/docs/OCDS_PROCESS_AND_RELEASE_IDENTITY.md",
-    scope: "workspace",
-    stations: ["1-event", "3-mapped", "4-record"],
-    description: "Workspace analysis of the contracting-process concept, the release/record distinction, and the boundary decision behind Station 3.",
-  },
-  {
-    id: "id-generation",
-    title: "OCDS ID generation",
-    url: "../philgeps_schema_analysis/docs/OCDS_ID_GENERATION.md",
-    scope: "workspace",
-    stations: ["3-mapped"],
-    description: "How the workspace constructs an OCID during mapping. Feeds the mapping station and field-trace content.",
-  },
-  {
-    id: "mapping-compliance",
-    title: "OCDS mapping compliance",
-    url: "../docs/OCDS_MAPPING_COMPLIANCE.md",
-    scope: "workspace",
-    stations: ["3-mapped"],
-    description: "Mapping files vs releases; codelist and path compliance. Station 3 leans on this for the mapping-exercise feedback.",
-  },
-  {
-    id: "philgeps-ocds-plan",
-    title: "PhilGEPS OCDS plan",
-    url: "../philgeps_ocds_plan.md",
-    scope: "workspace",
-    stations: ["3-mapped", "5-analyzed"],
-    description: "Flat rows → process-oriented releases; Cardinal workflow and indicator references used in the Analytics station.",
-  },
-  {
-    id: "ocp-red-flags",
-    title: "OCP red flags to OCDS mapping",
-    url: "../ocds_mapping_explorer/references/OCP_RED_FLAGS_TO_OCDS.md",
-    scope: "workspace",
-    stations: ["5-analyzed"],
-    description: "Red-flag catalogue R001–R073 and the OCDS paths each indicator reads. Source for the Analytics station's evidence panel.",
-  },
 ];
 
 export const REFERENCE_SCOPE_LABELS: Record<ReferenceScope, string> = {
   primer: "OCDS primer",
   schema: "OCDS schema",
   guidance: "OCDS guidance",
-  workspace: "Workspace doc",
 };
