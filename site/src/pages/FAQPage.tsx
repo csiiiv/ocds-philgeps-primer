@@ -2,10 +2,12 @@ import { useState } from "react";
 import { FAQ_SECTIONS } from "../content/faq";
 
 /**
- * The FAQ page. Questions are grouped into sections and each entry carries a
- * stable `#slug` anchor so they can be deep-linked (from the sidebar search,
- * the URL bar, or other pages). A lightweight in-page filter narrows by
- * question or answer text.
+ * The FAQ page, styled to match the About page: plain section headings and
+ * prose, no cards. Each section is an `<h2>`; each question is an `<h3>` with
+ * a stable `#slug` anchor (deep-linkable, with `scroll-margin-top` so anchored
+ * links aren't hidden under any sticky header) and the answer follows as a
+ * normal paragraph. A lightweight in-page filter narrows by question or
+ * answer text.
  */
 export function FAQPage() {
   const [query, setQuery] = useState("");
@@ -48,26 +50,24 @@ export function FAQPage() {
       </p>
 
       {visibleSections.length > 0 ? (
-        <div className="faq">
+        <>
           {visibleSections.map((section) => (
-            <section className="faq__section" key={section.id} id={section.id}>
+            <section key={section.id} id={section.id}>
               <h2>{section.title}</h2>
-              <dl className="faq__list">
-                {section.entries.map((entry) => (
-                  <div className="faq__entry" key={entry.slug} id={entry.slug}>
-                    <dt>
-                      <a href={`#${entry.slug}`} className="faq__anchor" aria-label={`Link to: ${entry.question}`}>
-                        #
-                      </a>
-                      {entry.question}
-                    </dt>
-                    <dd>{entry.answer}</dd>
-                  </div>
-                ))}
-              </dl>
+              {section.entries.map((entry) => (
+                <div className="faq__entry" key={entry.slug} id={entry.slug}>
+                  <h3>
+                    <a href={`#${entry.slug}`} className="faq__anchor" aria-label={`Link to: ${entry.question}`}>
+                      #
+                    </a>
+                    {entry.question}
+                  </h3>
+                  <p>{entry.answer}</p>
+                </div>
+              ))}
             </section>
           ))}
-        </div>
+        </>
       ) : (
         <p className="empty-search">No questions match this filter.</p>
       )}
