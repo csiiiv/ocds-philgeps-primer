@@ -92,6 +92,9 @@ export function Layout() {
           <NavLink to="/reference" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
             Reference index
           </NavLink>
+          <NavLink to="/faq" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
+            FAQ
+          </NavLink>
           <NavLink to="/about" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
             About
           </NavLink>

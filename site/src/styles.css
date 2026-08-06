@@ -1166,6 +1166,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .glossary-list dt span { padding: 2px 6px; border-radius: 999px; background: var(--bg); color: var(--ink-mute); font-size: 7px; font-weight: 750; text-transform: uppercase; }
 .glossary-list dd { margin: 7px 0 0; color: var(--ink-soft); font-size: 11px; line-height: 1.55; }
 
+/* FAQ page */
+.faq-controls { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 24px 0 12px; }
+.faq-controls label { display: grid; gap: 4px; color: var(--ink-mute); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.faq-controls input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); font: inherit; font-size: 12px; }
+.faq-controls input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.faq { display: grid; gap: 28px; margin: 18px 0 28px; }
+.faq__section h2 { margin: 0 0 12px; font-size: 15px; }
+.faq__list { display: grid; gap: 10px; margin: 0; padding: 0; }
+.faq__entry { scroll-margin-top: 20px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.faq__entry:target { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent-soft); }
+.faq__list dt { display: flex; align-items: baseline; gap: 8px; color: var(--ink); font-size: 13px; font-weight: 800; }
+.faq__anchor { flex: none; color: var(--ink-mute); font-size: 12px; font-weight: 700; text-decoration: none; opacity: 0; transition: opacity .12s; }
+.faq__entry:hover .faq__anchor, .faq__entry:focus-within .faq__anchor, .faq__entry:target .faq__anchor { opacity: 1; }
+.faq__list dd { margin: 7px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.6; }
+
 /* About page */
 .about-bullets { margin: 12px 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-soft); font-size: 13px; line-height: 1.6; }
 .about-bullets li { padding-left: 4px; }

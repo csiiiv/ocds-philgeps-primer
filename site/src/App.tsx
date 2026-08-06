@@ -12,11 +12,12 @@ import { FieldExplorerPage } from "./pages/FieldExplorerPage";
 import { GlossaryPage } from "./pages/GlossaryPage";
 import { SearchPage } from "./pages/SearchPage";
 import { AboutPage } from "./pages/AboutPage";
+import { FAQPage } from "./pages/FAQPage";
 import { ReferencePage } from "./pages/ReferencePage";
 
 /**
  * Canonical routes live under `/journey`, `/possible-journeys`, `/publication`,
- * `/explore/fields`, `/glossary`, `/reference`, `/about`, and `/search`.
+ * `/explore/fields`, `/glossary`, `/reference`, `/faq`, `/about`, and `/search`.
  *
  * Alias redirects keep older bookmarks working:
  * - `/stations` and `/stations/:id` → `/journey` and `/journey/:id`
@@ -49,6 +50,7 @@ export function App() {
         <Route path="/explore/fields" element={<FieldExplorerPage />} />
         <Route path="/glossary" element={<GlossaryPage />} />
         <Route path="/reference" element={<ReferencePage />} />
+        <Route path="/faq" element={<FAQPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<NotFound />} />

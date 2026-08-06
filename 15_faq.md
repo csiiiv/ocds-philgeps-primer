@@ -16,9 +16,9 @@ The goal is a mental model: what an OCDS dataset *is*, why it is shaped the way 
 
 ### Who is it for?
 
-The primary audience is **Mai, the procurement analyst** — someone at a CSO, newsroom, or government audit unit who is comfortable with spreadsheets and JSON at a reading level, needs to understand an OCDS dataset before she can analyse or write about it, and has bounced off the formal schema language of the official standard. If the primer works for Mai, it also serves developers, government publishers, and training leads as secondary layers.
+People who need to **understand** an OCDS dataset — analysts at CSOs, newsrooms, and government audit units; developers integrating a publishing pipeline; and anyone preparing to map, publish, or audit contracting data. It assumes comfort with spreadsheets and reading JSON, not programming.
 
-It is **not** written for OCDS experts (they already know this) or for people who need to publish data today (that is the explorer's job).
+It is **not** written for OCDS experts, or for people who need to publish data today.
 
 ### How is this different from the official OCDS documentation and primer?
 

@@ -3,6 +3,7 @@ import { STATIONS } from "./stations";
 import { STATION_TEACHING } from "./stationTeaching";
 import { POSSIBLE_JOURNEYS } from "./possibleJourneys";
 import { FIELD_TRACES } from "./fieldExplorer";
+import { FAQ_SECTIONS } from "./faq";
 
 export interface SearchDocument { id: string; type: string; title: string; excerpt: string; url: string; text: string }
 
@@ -11,6 +12,7 @@ export const SEARCH_DOCUMENTS: SearchDocument[] = [
   ...POSSIBLE_JOURNEYS.map((journey) => ({ id: journey.id, type: "Possible journey", title: journey.title, excerpt: `${journey.shape} · ${journey.buyer}`, url: `/possible-journeys/${journey.id}`, text: [journey.why, journey.canAnalyze, journey.cannotAnalyze, journey.source, journey.ocid, journey.caution].filter(Boolean).join(" ") })),
   ...FIELD_TRACES.map((trace) => ({ id: trace.id, type: "Field trace", title: trace.sourceField, excerpt: trace.label, url: `/explore/fields?trace=${trace.id}`, text: `${trace.rule} ${trace.rationale} ${trace.caution ?? ""} ${trace.values.map((value) => `${value.ocdsPath} ${value.ocdsValue}`).join(" ")}` })),
   ...GLOSSARY.map((entry) => ({ id: entry.slug, type: "Glossary", title: entry.term, excerpt: entry.definition, url: `/glossary#${entry.slug}`, text: `${entry.category} ${entry.definition} ${(entry.related ?? []).join(" ")}` })),
+  ...FAQ_SECTIONS.flatMap((section) => section.entries.map((entry) => ({ id: `faq-${entry.slug}`, type: "FAQ", title: entry.question, excerpt: entry.answer, url: `/faq#${entry.slug}`, text: entry.answer }))),
   { id: "publication", type: "Chapter", title: "Publication & Portfolio", excerpt: "Combine seven audited current-state releases into one OCDS release package and drillable portfolio.", url: "/publication", text: "release package publisher published date portfolio awards contracts suppliers spending chronology" },
 ];
 
