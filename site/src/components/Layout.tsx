@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { STATIONS, type MacroPhase, type Station } from "../content/stations";
 import { useStationProgress } from "../context/StationProgress";
@@ -37,8 +37,9 @@ export function Layout() {
   const { counts, passed, reset, isAvailable } = useStationProgress();
   const showProgress = isAvailable && counts.passed > 0;
 
-  useEffect(() => {
-    mainRef.current?.focus();
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    mainRef.current?.focus({ preventScroll: true });
   }, [location.pathname]);
   const submitSearch = (event: FormEvent) => { event.preventDefault(); if (search.trim()) navigate(`/search?q=${encodeURIComponent(search.trim())}`); };
 
