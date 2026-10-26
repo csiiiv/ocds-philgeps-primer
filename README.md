@@ -2,6 +2,8 @@
 
 This folder holds the plans, worked examples, and implementation of an interactive OCDS (Open Contracting Data Standard) primer website.
 
+**Live site:** <https://csiiiv.github.io/ocds-philgeps-primer/>
+
 ## Project identity and reference policy
 
 This primer is an organization-neutral, local proof of concept. Its location inside a wider workspace does not establish an owner, publisher, public website, repository, deployment target, or package namespace for the primer.
@@ -42,11 +44,11 @@ Read in this order:
 
 The implemented learning arc now moves from one clearly labelled synthetic journey, through audited real source-row shapes, to a multi-process release package and portfolio-level view. Selectable field tracing remains reserved for an intermediate exploration chapter.
 
-The site currently has no documented public deployment or organizational owner. Run and inspect it locally unless a verified deployment target is added explicitly.
+The site is deployed at <https://csiiiv.github.io/ocds-philgeps-primer/> via GitHub Pages (verified live). It has no organizational owner beyond this repository; run and inspect it locally for development.
 
 ## Deployment (GitHub Pages)
 
-A workflow at `.github/workflows/deploy.yml` builds the site on every push to `main` and publishes it to GitHub Pages at the project page URL.
+A workflow at `.github/workflows/deploy.yml` builds the site on every push to `main` and publishes it to GitHub Pages: <https://csiiiv.github.io/ocds-philgeps-primer/>.
 
 To enable it:
 
