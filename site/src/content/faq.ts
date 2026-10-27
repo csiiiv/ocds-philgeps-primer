@@ -24,6 +24,14 @@ export interface FaqSection {
 }
 
 export const FAQ_SECTIONS: FaqSection[] = [
+  { id: "mapping-and-publication", title: "Mapping and publication", entries: [
+    { slug: "field-vs-codelist", question: "How do field mapping and codelist mapping differ?", answer: "Field mapping chooses an OCDS destination; codelist mapping chooses a code with the right meaning for that destination. A code can be valid but describe the wrong procedure. The Mapping Guide includes source-definition exercises and an unresolved option for cases needing clarification." },
+    { slug: "publication-timing", question: "Must records and releases be generated in real time?", answer: "Publication timing and record generation are separate choices. In the simulated replay, source events can trigger publication immediately or wait for a job or explicit publishing action. Records can be updated after publication, rebuilt by a job, or assembled on request. Requesting a record does not create another release; historical values still require reliable event or audit capture." },
+    { slug: "buyer-and-procurer", question: "Are the buyer and procuring entity always the same?", answer: "No. The buyer pays for the purchase and the procuring entity manages the procedure. DENR plays both roles in the introductory example. The fictional solar-pump lab uses separate organizations and ID/name references to their respective parties." },
+    { slug: "lots-core", question: "Are lots part of the core OCDS 1.1.5 schema?", answer: "Lots are provided by an extension. The solar-pump packages declare Lots extension 1.1.5. The lab uses three item IDs, two lot IDs, two award IDs, and two contract IDs to show that these identify different objects." },
+    { slug: "lab-production", question: "Can I use the solar-pump lab as a production PhilGEPS mapping?", answer: "It is a fictional relational example, not the actual PhilGEPS database. Use its method to investigate actual source versions, primary and foreign keys, meanings, codelists, history capture, and publication eligibility with the source owner. EXAMPLE registry/classification schemes are placeholders; the workshop templates keep assumptions and unresolved decisions visible." },
+    { slug: "record-json", question: "Can I inspect a complete record as JSON?", answer: "Yes. Station 4 and the synthetic DENR journey expose the complete record, including its embedded releases and derived views. The replay and solar-pump lab also expose record-package JSON for publication. Audited real-source examples expose reconstructed current-state releases and explicitly identify the unavailable original release history." },
+  ] },
   {
     id: "about-the-primer",
     title: "About the primer",
@@ -122,7 +130,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
         slug: "multi-select-questions",
         question: "Why do some questions ask for more than one answer?",
         answer:
-          "Because OCDS genuinely fans out: one source value can legitimately populate several fields. For example, the buyer name has to appear in buyer.name, the matching parties[] entry, and be cross-referenced by tender.procuringEntity. The hard tiers of some checks are multi-select to teach this reality — you select every correct destination, and the exact correct set is required.",
+          "Because OCDS genuinely fans out: one source value can legitimately populate several fields. For example, the same organization name can appear in buyer.name and the matching parties[] entry. If that organization also manages the procurement, tender.procuringEntity references it by ID and name; a separate procuring entity references its own party. The hard tiers of some checks are multi-select to teach this reality — you select every correct destination, and the exact correct set is required.",
       },
       {
         slug: "deep-links",
@@ -188,7 +196,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
         slug: "how-built",
         question: "How is the site built?",
         answer:
-          "A static React + Vite + TypeScript application. Markdown-driven content keeps non-developers able to edit lessons; interactive station lenses are embedded where the journey needs them. There is no backend, no authentication, and no analytics. The build validates every example against the canonical OCDS schemas plus semantic assertions for chronology, party introduction, and implementation semantics, so a broken fixture cannot ship.",
+          "A static React + Vite + TypeScript application. Shared content modules keep lessons, search, and examples consistent; interactive station lenses are embedded where the journey needs them. There is no backend, no authentication, and no analytics. The build validates every example against the canonical OCDS schemas plus semantic assertions for chronology, party introduction, and implementation semantics, so a broken fixture cannot ship.",
       },
     ],
   },

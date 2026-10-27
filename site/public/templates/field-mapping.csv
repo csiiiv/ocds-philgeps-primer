@@ -1,0 +1,1 @@
+mapping_id,source_system,schema_version,source_table,source_column,source_type,business_meaning,join_rule,cardinality,ocds_path,ocds_type,mapping_classification,transformation,missing_value_rule,publication_eligibility,use_case,assumptions,validation_evidence,review_status,owner,reviewer,next_action,due_date

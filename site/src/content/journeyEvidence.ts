@@ -1,6 +1,8 @@
 import denr from "../../../examples/denr-r7-laptops-2024.json";
 import pocResults from "../../../examples/poc_etl/current_state_releases.json";
 import pocRows from "../../../examples/poc_etl/source_rows.json";
+import { FLAGSHIP_EXAMPLE } from "./workedExample";
+import type { OcdsRecord } from "./ocdsMerge";
 
 export interface JourneyEvidenceItem {
   id: string;
@@ -57,4 +59,10 @@ export const JOURNEY_EVIDENCE: Record<string, JourneyEvidenceItem[]> = {
   "poc-award-only": pocEvidence("award-only"),
   "poc-long-service": pocEvidence("long-service"),
   "poc-chronology": pocEvidence("chronology-anomaly"),
+};
+
+// Only expose complete records where the journey supplies the release
+// history. Current-state reconstructions remain individual release evidence.
+export const JOURNEY_RECORDS: Partial<Record<string, OcdsRecord>> = {
+  "denr-laptops": FLAGSHIP_EXAMPLE.record,
 };

@@ -175,6 +175,7 @@
             "id": "po-2024-001-01",
             "awardID": "aw-2024-001-01",
             "status": "active",
+            "dateSigned": "2024-04-20T10:00:00+08:00",
             "title": "Supply and Delivery of Laptop Computers",
             "value": { "amount": 2850000, "currency": "PHP" }
           }]
@@ -210,14 +211,14 @@
       {
         "id": "007",
         "date": "2024-07-15T16:00:00+08:00",
-        "tag": ["implementation"],
+        "tag": ["implementationUpdate"],
         "summary": "Final delivery — remaining 25 laptops received",
         "url": "https://example-philgeps.gov.ph/releases/2024-001/007.json",
         "partial": {
           "ocid": "ocds-philgeps-2024-001",
           "id": "007",
           "date": "2024-07-15T16:00:00+08:00",
-          "tag": ["implementation"],
+          "tag": ["implementationUpdate"],
           "initiationType": "tender",
           "contracts": [{
             "id": "po-2024-001-01",

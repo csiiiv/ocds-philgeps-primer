@@ -6,7 +6,7 @@ import { formatReleaseDate } from "../content/format";
 
 type JsonObject = Record<string, unknown>;
 
-export function CompiledReleaseView({ data }: { data: unknown }) {
+export function CompiledReleaseView({ data, compact = false, showJson = true }: { data: unknown; compact?: boolean; showJson?: boolean }) {
   const release = data as JsonObject;
   const tender = object(release.tender);
   const buyer = object(release.buyer);
@@ -20,12 +20,12 @@ export function CompiledReleaseView({ data }: { data: unknown }) {
   const milestones = objects(implementation.milestones);
 
   return (
-    <div className="compiled-view">
+    <div className={`compiled-view${compact ? " compiled-view--compact" : ""}`}>
       <div className="compiled-summary">
         <Summary label="Buyer" value={buyer.name} />
-        <Summary label="Supplier" value={supplier.name} />
-        <Summary label="Contract value" value={money(object(contract.value))} />
-        <Summary label="Competition" value={`${String(tender.numberOfTenderers ?? "—")} tenderer`} />
+        {(!compact || awards.length > 0) && <Summary label="Supplier" value={supplier.name} />}
+        {(!compact || contracts.length > 0) && <Summary label="Contract value" value={money(object(contract.value))} />}
+        {(!compact || tender.numberOfTenderers !== undefined) && <Summary label="Competition" value={`${String(tender.numberOfTenderers ?? "—")} tenderer`} />}
       </div>
 
       <div className="lifecycle-sections">
@@ -36,31 +36,31 @@ export function CompiledReleaseView({ data }: { data: unknown }) {
           <Field label="Deadline" value={date(period.endDate)} path="tender.tenderPeriod.endDate" />
           <Field label="Tenderers" value={tender.numberOfTenderers} path="tender.numberOfTenderers" />
         </LifecycleSection>
-        <LifecycleSection title="Award" status={award.status}>
+        {(!compact || awards.length > 0) && <LifecycleSection title="Award" status={award.status}>
           <Field label="Supplier" value={supplier.name} path="awards[].suppliers[].name" />
           <Field label="Award date" value={date(award.date)} path="awards[].date" />
           <Field label="Value" value={money(object(award.value))} path="awards[].value" />
-        </LifecycleSection>
-        <LifecycleSection title="Contract" status={contract.status}>
+        </LifecycleSection>}
+        {(!compact || contracts.length > 0) && <LifecycleSection title="Contract" status={contract.status}>
           <Field label="Contract" value={contract.title} path="contracts[].title" />
           <Field label="Value" value={money(object(contract.value))} path="contracts[].value" />
           <Field label="Delivery milestones" value={milestones.length} path="contracts[].implementation.milestones[]" />
-        </LifecycleSection>
-        <LifecycleSection title="Implementation" status={milestones.length ? "delivery updates" : "not published"}>
+        </LifecycleSection>}
+        {(!compact || milestones.length > 0) && <LifecycleSection title="Implementation" status={milestones.length ? "delivery updates" : "not published"}>
           {milestones.map((milestone, index) => (
             <Field key={String(milestone.id)} label={text(milestone.title)} value={`${text(milestone.status)} · ${milestone.dateMet ? date(milestone.dateMet) : "completion date not published"}`} path={`contracts[].implementation.milestones[${index}]`} />
           ))}
-        </LifecycleSection>
+        </LifecycleSection>}
       </div>
 
-      <div className="relationship-flow" aria-label="OCDS relationships">
+      {(!compact || contracts.length > 0) && <div className="relationship-flow" aria-label="OCDS relationships">
         <div><span>Supplier</span><strong>{text(supplier.name)}</strong></div><b>← supplies ←</b>
         <div><span>Award</span><strong>{text(award.id)}</strong></div><b>← referenced by ←</b>
         <div><span>Contract</span><strong>{text(contract.id)}</strong></div><b>→ contains →</b>
         <div><span>Delivery milestones</span><strong>{milestones.length}</strong></div>
-      </div>
+      </div>}
 
-      <JsonView data={data} label="Inspect raw compiled-release JSON" collapsed />
+      {showJson && <JsonView data={data} label="Inspect raw compiled-release JSON" collapsed />}
     </div>
   );
 }
@@ -68,7 +68,7 @@ export function CompiledReleaseView({ data }: { data: unknown }) {
 interface VersionValue { releaseID: string; releaseDate: string; releaseTag: string[]; value: unknown }
 interface ChangeRow { path: string; section: string; kind: "changed" | "added" | "removed" | "unchanged"; history: VersionValue[] }
 
-export function VersionedReleaseView({ data }: { data: unknown }) {
+export function VersionedReleaseView({ data, sourceReleaseCount = DEFAULT_RELEASES.length, showJson = true, onInspectRelease }: { data: unknown; sourceReleaseCount?: number; showJson?: boolean; onInspectRelease?: (id: string) => void }) {
   const rows = useMemo(() => flattenVersioned(data), [data]);
   const [section, setSection] = useState("All");
   const [showUnchanged, setShowUnchanged] = useState(false);
@@ -84,7 +84,7 @@ export function VersionedReleaseView({ data }: { data: unknown }) {
       <div className="change-summary">
         <div><strong>{changed}</strong><span>fields changed</span></div>
         <div><strong>{added}</strong><span>fields added later</span></div>
-        <div><strong>{DEFAULT_RELEASES.length}</strong><span>source releases</span></div>
+        <div><strong>{sourceReleaseCount}</strong><span>source releases</span></div>
       </div>
 
       <div className="change-controls">
@@ -112,15 +112,15 @@ export function VersionedReleaseView({ data }: { data: unknown }) {
           </table>
         </div>
 
-        {selected && <ChangeDetail row={selected} />}
+        {selected && <ChangeDetail row={selected} onInspectRelease={onInspectRelease} />}
       </div>
 
-      <JsonView data={data} label="Inspect raw versioned-release JSON" collapsed />
+      {showJson && <JsonView data={data} label="Inspect raw versioned-release JSON" collapsed />}
     </div>
   );
 }
 
-function ChangeDetail({ row }: { row: ChangeRow }) {
+function ChangeDetail({ row, onInspectRelease }: { row: ChangeRow; onInspectRelease?: (id: string) => void }) {
   return (
     <aside className="change-detail">
       <span>Selected field</span><code>{row.path}</code>
@@ -128,7 +128,7 @@ function ChangeDetail({ row }: { row: ChangeRow }) {
         {row.history.map((version, index) => (
           <li key={`${version.releaseID}-${index}`}>
             <div><strong>{display(version.value)}</strong><span>{formatReleaseDate(version.releaseDate)}</span></div>
-            <Link to={`/journey/4-record/${version.releaseID}`}>Release #{version.releaseID} · {version.releaseTag.join(", ")}</Link>
+            {onInspectRelease ? <button type="button" className="text-button" onClick={() => onInspectRelease(version.releaseID)}>Release #{version.releaseID} · {version.releaseTag.join(", ")}</button> : <Link to={`/journey/4-record/${version.releaseID}`}>Release #{version.releaseID} · {version.releaseTag.join(", ")}</Link>}
           </li>
         ))}
       </ol>
@@ -140,7 +140,7 @@ function LifecycleSection({ title, status, children }: { title: string; status: 
   return <section className="lifecycle-card"><header><h3>{title}</h3><span>{text(status)}</span></header><dl>{children}</dl></section>;
 }
 function Field({ label, value, path }: { label: string; value: unknown; path: string }) {
-  return <div><dt>{label}</dt><dd>{text(value)}</dd><code>{path}</code></div>;
+  return <div><dt>{label}</dt><dd>{text(value)}<code>{path}</code></dd></div>;
 }
 function Summary({ label, value }: { label: string; value: unknown }) { return <div><span>{label}</span><strong>{text(value)}</strong></div>; }
 

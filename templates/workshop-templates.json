@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Empty OCDS - Field Level Mapping Template for OCDS 1.1 (Template Version 0.91) #public.xlsx",
+    "title": "Blank OCDS mapping template",
+    "purpose": "Start a new field-level mapping using the blank OCDS 1.1 workbook (Template Version 0.91).",
+    "asset": "ocds-field-level-mapping-blank.xlsx"
+  },
+  {
+    "file": "2025_PhilGEPS 1.5_OCDS - Field Level Mapping Template for OCDS 1.1 (Template Version 0.91).xlsx",
+    "title": "PhilGEPS 1.5 mapping workbook",
+    "purpose": "Use the supplied 2025 PhilGEPS 1.5 field-level mapping workbook for OCDS 1.1.",
+    "asset": "philgeps-1.5-field-level-mapping.xlsx"
+  },
+  {
+    "file": "2025_mPhilGEPS_OCDS - Field Level Mapping Template for OCDS 1.1 (Template Version 0.91) (1) (1).xlsx",
+    "title": "mPhilGEPS mapping workbook",
+    "purpose": "Use the supplied 2025 mPhilGEPS field-level mapping workbook for OCDS 1.1.",
+    "asset": "mphilgeps-field-level-mapping.xlsx"
+  }
+]

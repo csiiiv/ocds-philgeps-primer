@@ -16,23 +16,23 @@ export interface StationTeaching {
 export const STATION_TEACHING: Record<StationId, StationTeaching> = {
   "1-event": {
     framing:
-      "Everything in OCDS begins as an event in a source system: a notice is posted, a bid is received, an award is made, a contract is signed, goods are delivered. Each event is a discrete thing that happened, at a point in time, recorded by PhilGEPS.",
+      "A procurement story unfolds through real-world events: a notice is posted, a bid is received, an award is made, a contract is signed, goods are delivered. Source systems may record these events individually or expose only their accumulated current state.",
     callouts: [
       {
         variant: "info",
-        title: "Events are the atomic input",
-        body: "A release is not one CSV row and it is not one process — it is one publication about a process, and publications happen when events do. The event is what changes; the release is how that change is published.",
+        title: "Events and publications have different roles",
+        body: "An event is something that happens. A publication policy determines which meaningful changes produce releases and when. An internal database edit need not produce a release; a release can repeat unchanged information as well as publish changes.",
       },
     ],
   },
   "2-extracted": {
     framing:
-      "When PhilGEPS exports data, each event becomes a flat row. The row carries the event's facts (dates, amounts, names) but no relationships to other rows — even when those rows describe the same procurement.",
+      "An export chooses what one row represents. One row may contain tender, award, supplier, and contract facts; several rows may instead describe items or awards within the same process. Inspect the row grain and shared keys before grouping or mapping.",
     callouts: [
       {
         variant: "warn",
         title: "Flat rows hide the process",
-        body: "Four rows with the same Bid Reference No. look like four records in a spreadsheet. They are one contracting process. The relationship is encoded in a shared identifier, not in the row layout — which is why flat exports are so easy to misread.",
+        body: "The audited Liliw example has four source rows for four items in one process. The Cebu example has two rows for two awards. Shared keys and source semantics establish relationships; a row count does not establish the number of events, releases, or processes.",
       },
     ],
   },
@@ -64,7 +64,7 @@ export const STATION_TEACHING: Record<StationId, StationTeaching> = {
   },
   "4-record": {
     framing:
-      "A release is one immutable JSON document published when information about the process changes. Many releases describe one contracting process over time. A record indexes those releases and can include a compiled release generated using OCDS merge rules and a versioned release containing field-value history and source-release provenance.",
+      "A release is one immutable JSON document published when information about the process changes. Many releases describe one contracting process over time. A record indexes those releases and should include a compiled release giving the latest known field values under OCDS merge rules, and may include a versioned release containing field-value history and source-release provenance.",
     callouts: [
       {
         variant: "info",

@@ -182,16 +182,16 @@ const MAPPING_QUESTIONS: MappingQuestionDefinition[] = [
     hint: "One source value, several destinations. (Fan-out)",
     sourceField: "Procuring Entity",
     sourceValue: "Department of Environment and Natural Resources — Region VII",
-    prompt: "The same buyer name has to be consistent across OCDS. Select every destination this source value should populate so the buyer is identifiable and cross-referenced correctly.",
+    prompt: "In this synthetic example, DENR is both buyer and procuring entity. Select every name field that should repeat its organization name. Organization IDs are mapped separately.",
     options: [
       { path: "buyer.name", label: "Display name on the release's buyer block." },
       { path: "parties[0].name", label: "Name on the organisation entry that carries the buyer role." },
-      { path: "tender.procuringEntity", label: "Reference (party.id) on the tender that points back to the buyer." },
+      { path: "tender.procuringEntity.name", label: "Name in the procuring-entity reference, because DENR plays both roles here." },
       { path: "planning.budget.projectID", label: "An unrelated planning identifier." },
     ],
-    answers: ["buyer.name", "parties[0].name", "tender.procuringEntity"],
-    correctFeedback: "Right — this is the fan-out pattern. One source value (the buyer name) populates buyer.name and the parties[] entry (with role 'buyer'), and tender.procuringEntity cross-references that party by id. The three must stay consistent so the buyer is identifiable from either side.",
-    retryFeedback: "Think about every place OCDS expects to see the buyer: a release-level shortcut (buyer), a canonical organisation record (parties[]), and the tender's pointer back to it. planning.budget.projectID is unrelated.",
+    answers: ["buyer.name", "parties[0].name", "tender.procuringEntity.name"],
+    correctFeedback: "Here DENR has both roles, so its name appears in all three fields. The buyer and procuring-entity references also need the matching party ID. When different organizations play these roles, use separate party entries and references.",
+    retryFeedback: "Use the name fields for the roles DENR actually plays in this example. An organization name alone does not establish its ID, and the planning project identifier is unrelated.",
   },
 ];
 

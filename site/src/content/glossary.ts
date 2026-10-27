@@ -3,6 +3,14 @@ export type GlossaryCategory = "OCDS model" | "Lifecycle" | "Organizations" | "D
 export interface GlossaryEntry { term: string; slug: string; category: GlossaryCategory; definition: string; related?: string[] }
 
 export const GLOSSARY: GlossaryEntry[] = [
+  { term: "Publication trigger", slug: "publication-trigger", category: "Data and mapping", definition: "A publisher-defined rule selecting which meaningful source changes produce OCDS publications. It is separate from the release tag and from scheduling." },
+  { term: "Event capture", slug: "event-capture", category: "Data and mapping", definition: "Retaining source events or audit history so intermediate changes can still be published after the operational database has changed again." },
+  { term: "Organization reference", slug: "organization-reference", category: "Organizations", definition: "An ID/name reference to a party, used in buyer, tender.procuringEntity, and award suppliers. The ID must identify the intended party." },
+  { term: "Primary organization identifier", slug: "organization-identifier", category: "Organizations", definition: "A scheme and identifier that identify an organization in a registry, published under parties[].identifier; distinct from the party reference key." },
+  { term: "Lot", slug: "lot", category: "OCDS model", definition: "A separately bid or awarded part of a tender. OCDS 1.1.5 models lots through the Lots extension. Item IDs and lot IDs identify different objects." },
+  { term: "Row grain", slug: "row-grain", category: "Data and mapping", definition: "What one source row represents: for example an item, an award, an event, or a flattened current-state snapshot." },
+  { term: "Join", slug: "join", category: "Data and mapping", definition: "A rule connecting source tables or rows using keys. Check identity and cardinality before turning joined rows into OCDS objects." },
+  { term: "On-demand record", slug: "on-demand-record", category: "Data and mapping", definition: "A record assembled from existing archived releases when requested. The request need not generate or publish a new release." },
   { term: "Amendment", slug: "amendment", category: "Lifecycle", definition: "A formal change to a tender, award, or contract. OCDS can describe its date, rationale, and related releases." },
   { term: "APP", slug: "app", category: "Philippine context", definition: "Annual Procurement Plan. An APP entry can provide planning context, but its identifier is not automatically the boundary of one contracting process." },
   { term: "Array", slug: "array", category: "Data and mapping", definition: "An ordered list of values or objects in JSON, such as awards[], contracts[], parties[], or tender.items[]." },

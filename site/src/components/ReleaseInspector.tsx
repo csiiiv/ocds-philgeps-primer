@@ -46,6 +46,8 @@ export interface ReleaseInspectorProps {
    * Pass an explicit id when the caller wants the heading referenced by name.
    */
   titleId?: string;
+  /** View shown when opening an item or navigating to another item. */
+  initialView?: "summary" | "json";
 }
 
 const DEFAULT_TITLE_ID = "release-inspector-title";
@@ -72,8 +74,9 @@ export function ReleaseInspector({
   fixedHeader,
   expandIndicators = false,
   titleId = DEFAULT_TITLE_ID,
+  initialView = "summary",
 }: ReleaseInspectorProps) {
-  const [view, setView] = useState<"summary" | "json">("summary");
+  const [view, setView] = useState<"summary" | "json">(initialView);
   const [sourceRowIndex, setSourceRowIndex] = useState(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const isOpen = selectedIndex !== null;
@@ -88,8 +91,8 @@ export function ReleaseInspector({
 
   // Reset transient view state when the inspected item changes.
   useEffect(() => {
-    if (isOpen) { setView("summary"); setSourceRowIndex(0); }
-  }, [selectedIndex, isOpen]);
+    if (isOpen) { setView(initialView); setSourceRowIndex(0); }
+  }, [selectedIndex, isOpen, initialView]);
 
   const hasPrev = selectedIndex !== null && selectedIndex > 0;
   const hasNext = selectedIndex !== null && selectedIndex < items.length - 1;

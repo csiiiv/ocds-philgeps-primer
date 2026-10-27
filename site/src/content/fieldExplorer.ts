@@ -15,9 +15,10 @@ export interface FieldTrace {
   rationale: string;
   caution?: string;
   values: FieldTraceValue[];
+  metadata?: { source: string; table: string; sourceType: string; ocdsType: string; classification: string; join: string; status: string };
 }
 
-export const FIELD_TRACES: FieldTrace[] = [
+const AUDITED_TRACES: FieldTrace[] = [
   {
     id: "bid-reference",
     sourceField: "Bid Reference No.",
@@ -93,6 +94,7 @@ export const FIELD_TRACES: FieldTrace[] = [
     example: "City of Cebu · award and contract values",
     rule: "Parse the numeric amount, attach PHP explicitly, and publish it on the corresponding award and contract.",
     rationale: "OCDS monetary values are objects containing both amount and currency.",
+    caution: "This POC copies Contract Amount into both award and contract values. It is an explicit fixture assumption, not evidence of an independently observed award value. Verify the source meaning before production use.",
     values: [
       { sourceLine: 21179, sourceValue: "440000.00", ocdsPath: "awards[id=4193158].value", ocdsValue: "{ amount: 440000, currency: PHP }" },
       { sourceLine: 21179, sourceValue: "440000.00", ocdsPath: "contracts[id=0261].value", ocdsValue: "{ amount: 440000, currency: PHP }" },
@@ -101,3 +103,16 @@ export const FIELD_TRACES: FieldTrace[] = [
     ],
   },
 ];
+
+export const FIELD_TRACES: FieldTrace[] = AUDITED_TRACES.map((trace) => ({
+  ...trace,
+  metadata: {
+    source: "2023 PhilGEPS export; database schema/version not supplied",
+    table: "2023.csv (flattened export); underlying source tables not supplied",
+    sourceType: "Text as exported",
+    ocdsType: trace.id === "contract-amount" ? "Value object: numeric amount + string currency" : "String or nested object/reference containing strings",
+    classification: trace.id === "contract-amount" ? "Transformation + disclosed assumption" : trace.id === "item-description" ? "Direct value + grouped objects" : trace.id === "bid-reference" || trace.id === "identity-fallback" ? "Derived identifier" : "Identifier / relationship mapping",
+    join: trace.journeyId === "poc-multi-item" ? "Group source rows by process key; keep distinct Line Item No values." : trace.journeyId === "poc-single-row" ? "Disclosed Solicitation No. + buyer fallback for this fixture only." : "Group by process key; keep each Award No. and link Contract No through the Award No. on its row.",
+    status: "Audited POC transformation; production mapping requires source-owner review.",
+  },
+}));

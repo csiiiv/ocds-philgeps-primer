@@ -25,7 +25,7 @@ export function eventsForJourney(journeyId: string): JourneyEvent[] {
   return evidence.filter((item) => item.kind === "release").map((item) => {
     const release = object(item.data);
     const tags = Array.isArray(release.tag) ? release.tag.map(String) : [];
-    const stage = tags.includes("implementation") ? "Implementation" : tags.includes("contract") ? "Contract" : tags.includes("award") ? "Award" : "Tender";
+    const stage = tags.some((tag) => tag.startsWith("implementation")) ? "Implementation" : tags.some((tag) => tag.startsWith("contract")) ? "Contract" : tags.some((tag) => tag.startsWith("award")) ? "Award" : "Tender";
     return { id: `release-${item.id}`, date: item.date, stage, label: item.label, sourceField: "Teaching release", sourceValue: item.id, ocdsPath: "tag", ocdsValue: tags.join(", ") || "tender", sequenceIssue: false };
   });
 }

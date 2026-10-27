@@ -46,6 +46,74 @@ The implemented learning arc now moves from one clearly labelled synthetic journ
 
 The site is deployed at <https://csiiiv.github.io/ocds-philgeps-primer/> via GitHub Pages (verified live). It has no organizational owner beyond this repository; run and inspect it locally for development.
 
+## Mapping workshop additions (local implementation)
+
+The scope and source-dependent follow-ups are tracked in
+[`docs/website-update-plan.md`](docs/website-update-plan.md).
+
+| Route | Learning activity |
+|---|---|
+| `/mapping` | One selected mapping task: fields, identifiers/relationships, codelists, or events. Anatomy and shared structures remain available as supporting reference. |
+| `/simulation` | Inspect evolving fictional source tables and captured changes, publish releases, and generate records using independent event-driven, scheduled, or on-demand controls. Inspect/download source snapshots, releases, derived views, and packages. |
+| `/mapping/solar-pumps` | Source → Mapping → Result lab with fictional tables, three items across two lots, party references, awards/contracts, and supplier variants. |
+| `/workshop` | Workshop learning path, recap checklist, Mapping Explorer link, and three supplied Excel mapping workbooks. |
+
+The workshop's Templates view downloads the originals in [`templates/`](templates/):
+the blank OCDS template, the 2025 PhilGEPS 1.5 workbook, and the 2025 mPhilGEPS
+workbook. `templates/workshop-templates.json` defines their labels and source
+filenames. Vite serves these files directly in development and emits unchanged
+copies into the production output. Download URLs use simple asset names; the
+original workbook names, including spaces and `#`, are preserved when downloading.
+
+The solar-pump source is deliberately fictional, with placeholder registry and
+classification schemes; it is not the actual PhilGEPS schema or an approved
+production mapping. Its packages declare the pinned Lots extension 1.1.5.
+The DENR replay remains synthetic and does not connect to a live source system.
+Its Source tables inspection view shows eight illustrative tables, row counts, keys, OCDS destinations,
+and added/updated values as events arrive. Source snapshots advance independently
+of publication jobs; internal notes stay out of releases and records. Historical
+inspection preserves the latest archive and record, and missing dates stay missing.
+
+Navigation is grouped into **Learn OCDS**, **Map data**, **Workshop**, and
+**Reference**. Station links appear in the introductory journey. The replay uses
+three compact state summaries, a persistent desktop event list, and one inspector
+with Source tables, Release, and Record views. Processing settings are optional;
+waiting publications and stale records stay visible. JSON viewing and downloads
+share an artifact picker. The structure and delivery record are documented in
+[`docs/structure-review.md`](docs/structure-review.md).
+
+From `site/`:
+
+```bash
+npm ci
+npm run dev
+npm test
+npm run build
+```
+
+`npm test` checks the actual TypeScript content modules through an in-memory Vite
+bundle without a server or network access. It verifies all nine publication/record
+mode combinations, capture and publication order, immutability, retained values,
+record snapshots, package schemas, Lots schema constraints, party/object
+relationships, templates, and search coverage. `npm run build` also runs these
+checks plus the existing example validation and TypeScript checks.
+
+For the desktop-first restructuring and automated accessibility checks:
+
+```bash
+npx playwright install chromium
+npm run test:e2e -- --project=desktop
+```
+
+The browser suite starts a local server on port 5184 and runs desktop and mobile
+projects. `PLAYWRIGHT_CHROMIUM_EXECUTABLE` can select an existing Chromium binary.
+Desktop layout checks cover 1440×900, 1920×1080, and 2560×1440, including
+compact replay summaries, the event rail, and a wide inspection workspace.
+The mobile project remains available; dedicated mobile optimization is deferred.
+`PRIMER_TEST_URL` targets an already running server; the suite will not start a
+second server when it is set. The browser checks exercise controls and downloads;
+they do not publish anything to GitHub Pages.
+
 ## Deployment (GitHub Pages)
 
 A workflow at `.github/workflows/deploy.yml` builds the site on every push to `main` and publishes it to GitHub Pages: <https://csiiiv.github.io/ocds-philgeps-primer/>.

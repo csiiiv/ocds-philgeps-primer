@@ -1,8 +1,9 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { POSSIBLE_JOURNEYS, type LifecycleStage } from "../content/possibleJourneys";
-import { JOURNEY_EVIDENCE } from "../content/journeyEvidence";
+import { JOURNEY_EVIDENCE, JOURNEY_RECORDS } from "../content/journeyEvidence";
 import { JourneyEvidenceViewer } from "../components/JourneyEvidenceViewer";
 import { JourneyEventTimeline } from "../components/JourneyEventTimeline";
+import { JsonView } from "../components/JsonView";
 import { formatReleaseDate } from "../content/format";
 
 const STAGES: LifecycleStage[] = ["Tender", "Award", "Contract", "Implementation"];
@@ -22,6 +23,7 @@ export function PossibleJourneyDetailPage() {
   const previous = POSSIBLE_JOURNEYS[index - 1];
   const next = POSSIBLE_JOURNEYS[index + 1];
   const evidence = JOURNEY_EVIDENCE[journey.id] ?? [];
+  const record = JOURNEY_RECORDS[journey.id];
 
   return (
     <>
@@ -36,7 +38,7 @@ export function PossibleJourneyDetailPage() {
       </div>
 
       <nav className="detail-section-nav" aria-label="Journey detail sections">
-        <a href="#shape">Shape</a><a href="#timeline">Timeline</a><a href="#record">Record</a><a href="#questions">Questions</a>
+        <Link to="#shape">Shape</Link><Link to="#timeline">Timeline</Link><Link to="#record">Record</Link><Link to="#questions">Questions</Link>
       </nav>
 
       <section id="shape" className="journey-detail__section">
@@ -67,8 +69,14 @@ export function PossibleJourneyDetailPage() {
           <div><dt>Source</dt><dd>{journey.source}</dd></div>
           {journey.ocid && <div><dt>Source OCID</dt><dd><code>{journey.ocid}</code></dd></div>}
         </dl>
+        {record && <>
+          <h3>Complete OCDS record</h3>
+          <p>Inspect this synthetic record as one JSON object: its <code>ocid</code>, all {record.releases.length} embedded <code>releases</code>, the latest-state <code>compiledRelease</code>, and the optional field history in <code>versionedRelease</code>. The individual releases are also available below.</p>
+          <JsonView data={record} label="View complete OCDS record JSON" collapsed />
+          <p className="derived-note">This is the record object. For publication, records are wrapped in a record package with package metadata.</p>
+        </>}
         <JourneyEvidenceViewer items={evidence} provenance={journey.provenance} />
-        {journey.provenance === "Real" && <p className="journey-caution">Compare the source rows with the reconstructed release above. Release Index and Versioned Release remain unavailable because the export does not provide the underlying publication history.</p>}
+        {journey.provenance === "Real" && <p className="journey-caution"><strong>Complete record unavailable.</strong> Compare the source rows with the reconstructed release above. The export does not provide the original release history, so this view does not invent a release index, compiled release, or versioned history.</p>}
       </section>
 
       <section id="questions" className="journey-detail__section">

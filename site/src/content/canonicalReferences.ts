@@ -29,6 +29,10 @@ const OCP = "Open Contracting Partnership";
  * concepts are already covered authoritatively by the sources below.
  */
 export const CANONICAL_REFERENCES: CanonicalReference[] = [
+  { id: "ocds-mapping", title: "OCDS mapping guidance and templates", url: "https://standard.open-contracting.org/latest/en/guidance/map/", scope: "guidance", stations: ["3-mapped"], publisher: OCP, description: "Document source meanings and map fields and codes using the official mapping templates." },
+  { id: "ocds-codelists", title: "OCDS codelists", url: "https://standard.open-contracting.org/latest/en/schema/codelists/", scope: "schema", stations: ["3-mapped", "4-record"], publisher: OCP, description: "Exact code definitions, open versus closed lists, procurement methods, statuses, roles, and release tags." },
+  { id: "ocds-change-history", title: "Publishing a change history", url: "https://standard.open-contracting.org/latest/en/guidance/build/change_history/", scope: "guidance", stations: ["4-record"], publisher: OCP, description: "Worked example of new immutable releases and updated record views across a procurement story." },
+  { id: "ocds-lots-extension", title: "Lots extension 1.1.5", url: "https://extensions.open-contracting.org/en/extensions/lots/v1.1.5/", scope: "schema", stations: ["3-mapped"], publisher: OCP, description: "The pinned extension used by the fictional solar-pump lab to connect items, lots, and awards." },
   {
     id: "ocds-primer-releases-records",
     title: "How is OCDS data published?",

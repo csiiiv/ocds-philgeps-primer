@@ -24,6 +24,8 @@ import { ReleaseTimeline } from "../components/ReleaseTimeline";
 import { CompiledReleaseView, VersionedReleaseView } from "../components/RecordViews";
 import { KnowledgeCheck } from "../components/KnowledgeCheck";
 import { ReleaseInspector, type InspectorItem } from "../components/ReleaseInspector";
+import { JsonView } from "../components/JsonView";
+import { RELEASE_ANATOMY } from "../content/mappingGuide";
 
 const VALID_IDS = new Set<string>(STATIONS.map((s) => s.id));
 
@@ -56,15 +58,13 @@ export function StationPage() {
 
       {teaching.framing && <p>{teaching.framing}</p>}
 
-      {teaching.callouts?.map((c, i) => (
-        <Callout key={i} callout={c} />
-      ))}
-
       <ProcessContinuity stationId={station.id} />
 
       <StationLens stationId={station.id} />
 
       <KnowledgeCheck key={station.id} stationId={station.id} />
+
+      {teaching.callouts?.length && <details className="lesson-background"><summary>Context and implementation notes</summary>{teaching.callouts.map((callout, index) => <Callout key={index} callout={callout} />)}{station.id === "3-mapped" && <Link to="/mapping#identity">Explore identifier and relationship mapping →</Link>}</details>}
 
       <nav className="station-nav">
         {prev ? (
@@ -94,8 +94,8 @@ function StationLens({ stationId }: { stationId: StationId }) {
   switch (stationId) {
     case "1-event": return <EventCard />;
     case "2-extracted": return <RawRowViewer />;
-    case "3-mapped": return <><CanonicalMapper /><MappingExercise /></>;
-    case "4-record": return <><RecordStationBody /><CodelistExercise /></>;
+    case "3-mapped": return <><CanonicalMapper /><section className="learning-section" id="codelists"><h2>Codelists: choose a code by its meaning</h2><p>Field mapping chooses <code>tender.procurementMethod</code>. Value mapping chooses a code: a procedure open to all interested suppliers maps to <code>open</code>. Keep its local label in <code>procurementMethodDetails</code>.</p><p>Closed codelists require standard codes. Open lists allow documented additions. Codes are case-sensitive, and a valid code can still have the wrong meaning.</p><Link to="/mapping#codelist-practice">Explore definitions and practice codelist decisions →</Link></section><MappingExercise /></>;
+    case "4-record": return <><section className="learning-section"><h2>Release metadata, lifecycle objects, and shared references</h2><p>Each release includes the information relevant to its publication; later releases can add objects and repeat or change earlier values.</p><dl className="learning-definitions">{RELEASE_ANATOMY.filter((item) => ["ocid", "id / date / tag", "parties[]", "contracts[]"].includes(item.path)).map((item) => <div key={item.path}><dt><code>{item.path}</code></dt><dd>{item.meaning}</dd></div>)}</dl><p><Link to="/simulation">Watch releases and this record grow event by event →</Link></p></section><RecordStationBody /><CodelistExercise /></>;
     case "5-analyzed": return <RedFlagPlayground />;
   }
 }
@@ -206,6 +206,9 @@ function RecordStationBody() {
           </>
         )}
       </section>
+
+      <JsonView data={FLAGSHIP_EXAMPLE.record} label="View complete OCDS record JSON" collapsed />
+      <p className="derived-note">The complete record JSON contains the OCID, all embedded releases, and both derived views. For publication, this record object is wrapped in a record package with package metadata.</p>
     </>
   );
 }

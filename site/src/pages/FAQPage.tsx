@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FAQ_SECTIONS } from "../content/faq";
 
 /**
@@ -57,9 +58,9 @@ export function FAQPage() {
               {section.entries.map((entry) => (
                 <div className="faq__entry" key={entry.slug} id={entry.slug}>
                   <h3>
-                    <a href={`#${entry.slug}`} className="faq__anchor" aria-label={`Link to: ${entry.question}`}>
+                    <Link to={`#${entry.slug}`} className="faq__anchor" aria-label={`Link to: ${entry.question}`}>
                       #
-                    </a>
+                    </Link>
                     {entry.question}
                   </h3>
                   <p>{entry.answer}</p>

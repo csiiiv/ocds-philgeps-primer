@@ -4,6 +4,7 @@ import { HashRouter } from "react-router-dom";
 import { App } from "./App";
 import { StationProgressProvider } from "./context/StationProgress";
 import "./styles.css";
+import "./workspaces.css";
 
 // HashRouter so the app works on static hosts (GitHub Pages) that have no
 // SPA fallback: every route lives after the #, so refreshes and direct links

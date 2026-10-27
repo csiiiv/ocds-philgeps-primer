@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FIELD_TRACES } from "../content/fieldExplorer";
 
 export function FieldExplorerPage() {
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const requested = params.get("trace");
-  const [traceId, setTraceId] = useState(FIELD_TRACES.some((item) => item.id === requested) ? requested! : FIELD_TRACES[0].id);
-  const trace = FIELD_TRACES.find((item) => item.id === traceId)!;
+  const trace = FIELD_TRACES.find((item) => item.id === requested) ?? FIELD_TRACES[0];
+  const selectTrace = (id: string) => { const next = new URLSearchParams(params); next.set("trace", id); setParams(next); };
   return <>
     <p className="eyebrow">Intermediate · Field explorer</p>
     <h1>Trace a Source Field into OCDS</h1>
@@ -14,17 +13,20 @@ export function FieldExplorerPage() {
     <aside className="provenance-contract"><strong>Transformation, not simple renaming</strong><p>A source field can establish identity, create several array entries, populate more than one OCDS path, or be rejected as a sentinel. Select a field to inspect the rule and evidence.</p></aside>
     <div className="field-explorer">
       <nav className="field-list" aria-label="Fields available to trace">
-        {FIELD_TRACES.map((item) => <button type="button" key={item.id} aria-pressed={trace.id === item.id} data-active={trace.id === item.id || undefined} onClick={() => setTraceId(item.id)}><code>{item.sourceField}</code><strong>{item.label}</strong><small>{item.values.length} mapped value{item.values.length === 1 ? "" : "s"}</small></button>)}
+        {FIELD_TRACES.map((item) => <button type="button" key={item.id} aria-pressed={trace.id === item.id} data-active={trace.id === item.id || undefined} onClick={() => selectTrace(item.id)}><code>{item.sourceField}</code><strong>{item.label}</strong><small>{item.values.length} mapped value{item.values.length === 1 ? "" : "s"}</small></button>)}
       </nav>
       <article className="field-trace">
-        <header><div><span>Selected field</span><h2>{trace.sourceField}</h2><p>{trace.example}</p></div><Link to={`/possible-journeys/${trace.journeyId}#record`}>Open full evidence <span aria-hidden="true">→</span></Link></header>
+        <header><div><span>Audited source example · selected field</span><h2>{trace.sourceField}</h2><p>{trace.example}</p></div><Link to={`/possible-journeys/${trace.journeyId}#record`}>Open full evidence <span aria-hidden="true">→</span></Link></header>
         <div className="field-trace__rule"><span>Transformation rule</span><p>{trace.rule}</p><strong>Why:</strong> {trace.rationale}</div>
         {trace.caution && <p className="journey-caution">{trace.caution}</p>}
         <div className="field-trace__flow"><span>Source row</span><b>→</b><span>Rule</span><b>→</b><span>OCDS result</span></div>
         <ol className="field-trace__values">
           {trace.values.map((value, index) => <li key={`${value.sourceLine}-${value.ocdsPath}-${index}`}><div><span>Line {value.sourceLine}</span><code>{trace.sourceField}</code><strong>{value.sourceValue}</strong></div><b aria-hidden="true">→</b><div><span>OCDS path</span><code>{value.ocdsPath}</code><strong>{value.ocdsValue}</strong></div></li>)}
         </ol>
+        <details className="lesson-background"><summary>Source evidence, types, and review details</summary>        {trace.metadata && <dl className="learning-definitions"><div><dt>Source version</dt><dd>{trace.metadata.source}</dd></div><div><dt>Table / column</dt><dd>{trace.metadata.table} · <code>{trace.sourceField}</code></dd></div><div><dt>Data types</dt><dd>{trace.metadata.sourceType} → {trace.metadata.ocdsType}</dd></div><div><dt>Mapping classification</dt><dd>{trace.metadata.classification}</dd></div><div><dt>Join and cardinality</dt><dd>{trace.metadata.join}</dd></div><div><dt>Review status</dt><dd>{trace.metadata.status}</dd></div></dl>}
+        </details>
       </article>
     </div>
+    <p><Link to="/mapping/solar-pumps#source">Explore a fictional relational schema with tables, keys, and shared structures →</Link></p>
   </>;
 }

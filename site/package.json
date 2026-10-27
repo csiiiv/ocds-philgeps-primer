@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vite",
     "validate:examples": "node scripts/validate-examples.mjs",
-    "build": "npm run validate:examples && tsc --noEmit && vite build",
+    "test": "node scripts/check-learning.mjs",
+    "test:e2e": "playwright test",
+    "build": "npm run validate:examples && npm test && tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

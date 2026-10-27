@@ -210,7 +210,7 @@ function assertFlagshipSemantics(example, releases, file, target) {
   const first = releases[0];
   const bidderRelease = releases.find((release) => release.tender?.numberOfTenderers !== undefined);
   const awardRelease = releases.find((release) => release.tag?.includes("award"));
-  const implementationReleases = releases.filter((release) => release.tag?.includes("implementation"));
+  const implementationReleases = releases.filter((release) => release.tag?.some((tag) => tag.startsWith("implementation")));
 
   if (first.tender?.numberOfTenderers !== undefined) {
     target.push(`${file}: notice release must omit numberOfTenderers until bids are known`);

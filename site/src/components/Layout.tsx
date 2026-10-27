@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
-import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { STATIONS, type MacroPhase, type Station } from "../content/stations";
 import { useStationProgress } from "../context/StationProgress";
 
@@ -35,6 +35,10 @@ function getPageLabel(pathname: string) {
   if (pathname === "/journey") return "The journey";
   if (pathname.startsWith("/possible-journeys")) return "Possible Journeys";
   if (pathname.startsWith("/publication")) return "Publication & Portfolio";
+  if (pathname === "/mapping/solar-pumps") return "Solar-pump mapping lab";
+  if (pathname.startsWith("/mapping")) return "Mapping Guide";
+  if (pathname.startsWith("/simulation")) return "Procurement replay";
+  if (pathname.startsWith("/workshop")) return "Workshop";
   if (pathname.startsWith("/explore")) return "Field Explorer";
   if (pathname.startsWith("/glossary")) return "Glossary";
   if (pathname.startsWith("/reference")) return "Reference index";
@@ -56,7 +60,14 @@ export function Layout() {
   const { counts, passed, reset, isAvailable } = useStationProgress();
   const showProgress = isAvailable && counts.passed > 0;
   const pageLabel = getPageLabel(location.pathname);
+  const inJourney = location.pathname === "/journey" || location.pathname.startsWith("/journey/");
+  const activeSection = inJourney || ["/simulation", "/possible-journeys", "/publication"].some((path) => location.pathname.startsWith(path)) ? "learn"
+    : ["/mapping", "/explore"].some((path) => location.pathname.startsWith(path)) ? "map"
+    : location.pathname.startsWith("/workshop") ? "workshop" : "reference";
+  const navClass = ({ isActive }: { isActive: boolean }) => "nav-link" + (isActive ? " nav-link--active" : "");
   const progressPercent = counts.total > 0 ? (counts.passed / counts.total) * 100 : 0;
+  const wideContent = ["/journey", "/possible-journeys", "/publication", "/mapping", "/simulation", "/workshop", "/explore"]
+    .some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`));
 
   useLayoutEffect(() => {
     setMobileNavOpen(false);
@@ -67,6 +78,20 @@ export function Layout() {
     }
     mainRef.current?.focus({ preventScroll: true });
   }, [location.pathname]);
+
+  // HashRouter owns the browser's fragment. Section fragments live inside
+  // the router location (e.g. #/possible-journeys/poc-multi-award#timeline),
+  // so the browser cannot scroll to those targets by itself.
+  useLayoutEffect(() => {
+    if (!location.hash) return;
+    let id: string;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ block: "start", behavior: "auto" });
+    if (!target.hasAttribute("tabindex")) target.tabIndex = -1;
+    target.focus({ preventScroll: true });
+  }, [location.pathname, location.hash, location.key]);
 
   useEffect(() => {
     if (!mobileNavOpen) return;
@@ -110,7 +135,11 @@ export function Layout() {
 
   return (
     <div className="app-shell">
-      <a className="skip-link" href="#main-content">Skip to lesson content</a>
+      <Link className="skip-link" to={{ pathname: location.pathname, search: location.search, hash: "#main-content" }} onClick={(event) => {
+        event.preventDefault();
+        mainRef.current?.scrollIntoView({ block: "start", behavior: "auto" });
+        mainRef.current?.focus({ preventScroll: true });
+      }}>Skip to lesson content</Link>
       <header className="mobile-header">
         <NavLink className="mobile-header__brand" to="/journey" aria-label="OCDS Primer home">
           <strong>OCDS</strong><span>Primer</span>
@@ -127,7 +156,7 @@ export function Layout() {
           <span aria-hidden="true">☰</span> Menu
         </button>
         {isAvailable && (
-          <span className="mobile-header__progress" aria-label={`${counts.passed} of ${counts.total} stations passed`}>
+          <span className="mobile-header__progress" role="progressbar" aria-label="Station progress" aria-valuemin={0} aria-valuemax={counts.total} aria-valuenow={counts.passed}>
             <span style={{ width: `${progressPercent}%` }} />
           </span>
         )}
@@ -150,52 +179,36 @@ export function Layout() {
         </div>
         <nav className="nav">
           <form className="sidebar-search" role="search" onSubmit={submitSearch}><label htmlFor="sidebar-search">Search primer</label><div><input id="sidebar-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search" /><button type="submit" aria-label="Submit search">→</button></div></form>
-          <NavLink to="/journey" end className="nav-link nav-link--hub">
-            The journey
-          </NavLink>
-          <div className="nav-journey-children">
-            {groupStationsByMacroPhase(STATIONS).map((group) => (
-              <div
-                className="nav-group"
-                key={group.phase}
-                style={{ ["--group-rail" as string]: group.rail }}
-              >
-                {group.stations.map((s) => (
-                  <NavLink
-                    key={s.id}
-                    to={`/journey/${s.id}`}
-                    className={({ isActive }) =>
-                      "nav-link nav-link--station" + (isActive ? " nav-link--active" : "") + (passed.has(s.id) ? " nav-link--passed" : "")
-                    }
-                  >
-                    {passed.has(s.id) && <span className="nav-link__check" aria-hidden="true">✓</span>}
-                    {s.title}
-                  </NavLink>
-                ))}
-              </div>
-            ))}
-          </div>
-          <NavLink to="/possible-journeys" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            Possible Journeys
-          </NavLink>
-          <NavLink to="/publication" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            Publication &amp; Portfolio
-          </NavLink>
-          <NavLink to="/explore/fields" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            Field Explorer
-          </NavLink>
-          <NavLink to="/glossary" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            Glossary
-          </NavLink>
-          <NavLink to="/reference" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            Reference index
-          </NavLink>
-          <NavLink to="/faq" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            FAQ
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => "nav-link nav-link--chapter" + (isActive ? " nav-link--active" : "")}>
-            About
-          </NavLink>
+          <section className="nav-section" aria-label="Learn OCDS">
+            <Link className={`nav-section__title${activeSection === "learn" ? " nav-section__title--active" : ""}`} to="/journey">Learn OCDS</Link>
+            {activeSection === "learn" && <div className="nav-section__children">
+              <NavLink to="/journey" end className={navClass}>Five-station introduction</NavLink>
+              {inJourney && <div className="nav-journey-children">{groupStationsByMacroPhase(STATIONS).map((group) => <div className="nav-group" key={group.phase} style={{ ["--group-rail" as string]: group.rail }}>{group.stations.map((station) => <NavLink key={station.id} to={`/journey/${station.id}`} className={({ isActive }) => "nav-link nav-link--station" + (isActive ? " nav-link--active" : "") + (passed.has(station.id) ? " nav-link--passed" : "")}>
+                {passed.has(station.id) && <span className="nav-link__check" aria-hidden="true">✓</span>}{station.title}
+              </NavLink>)}</div>)}</div>}
+              <NavLink to="/simulation" className={navClass}>Procurement replay</NavLink>
+              <NavLink to="/possible-journeys" className={navClass}>Process examples</NavLink>
+              <NavLink to="/publication" className={navClass}>Publication &amp; portfolio</NavLink>
+            </div>}
+          </section>
+          <section className="nav-section" aria-label="Map data">
+            <Link className={`nav-section__title${activeSection === "map" ? " nav-section__title--active" : ""}`} to="/mapping">Map data</Link>
+            {activeSection === "map" && <div className="nav-section__children">
+              <NavLink to="/mapping" end className={navClass}>Mapping Guide</NavLink>
+              <NavLink to="/explore/fields" className={navClass}>Field Explorer</NavLink>
+              <NavLink to="/mapping/solar-pumps" className={navClass}>Solar-pump lab</NavLink>
+            </div>}
+          </section>
+          <section className="nav-section" aria-label="Workshop">
+            <Link className={`nav-section__title${activeSection === "workshop" ? " nav-section__title--active" : ""}`} to="/workshop">Workshop</Link>
+            {activeSection === "workshop" && <div className="nav-section__children"><Link className="nav-link" to="/workshop#agenda">Learning path</Link><Link className="nav-link" to="/workshop#templates">Templates</Link><Link className="nav-link" to="/workshop#outputs">Outputs</Link></div>}
+          </section>
+          <section className="nav-section" aria-label="Reference">
+            <Link className={`nav-section__title${activeSection === "reference" ? " nav-section__title--active" : ""}`} to="/reference">Reference</Link>
+            {activeSection === "reference" && <div className="nav-section__children">
+              <NavLink to="/glossary" className={navClass}>Glossary</NavLink><NavLink to="/faq" className={navClass}>FAQ</NavLink><NavLink to="/reference" className={navClass}>Official references</NavLink><NavLink to="/about" className={navClass}>About</NavLink>
+            </div>}
+          </section>
         </nav>
         <div className="sidebar-foot">
           {showProgress ? (
@@ -213,7 +226,7 @@ export function Layout() {
           </p>
         </div>
       </aside>
-      <main id="main-content" className="content" ref={mainRef} tabIndex={-1}>
+      <main id="main-content" className={`content${wideContent ? " content--wide" : ""}`} ref={mainRef} tabIndex={-1}>
         <Outlet />
       </main>
     </div>

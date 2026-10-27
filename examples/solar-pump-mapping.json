@@ -1,0 +1,41 @@
+{
+  "provenance": "Entirely fictional relational source for the workshop lab; not the PhilGEPS database schema.",
+  "schemaVersion": "Teaching schema 1",
+  "process": {
+    "id": "SOLAR-001", "projectID": "PROJECT-SOLAR", "planReference": "APP-SOLAR-01",
+    "title": "Solar pumps and installation for two irrigation sites",
+    "buyerID": "BUYER-1", "procuringEntityID": "PE-1", "methodCode": "PUBLIC_BID",
+    "methodDefinition": "All interested suppliers may submit bids.",
+    "estimatedAmount": 3000000, "currency": "PHP",
+    "opens": "2026-01-05T09:00:00+08:00", "closes": "2026-02-05T17:00:00+08:00"
+  },
+  "organizations": [
+    { "id": "BUYER-1", "name": "Fictional Irrigation Office", "roles": ["buyer"] },
+    { "id": "PE-1", "name": "Fictional Shared Procurement Unit", "roles": ["procuringEntity"] },
+    { "id": "SUP-1", "name": "Solar Equipment Cooperative", "roles": ["tenderer"], "registrationID": "EXAMPLE-001" },
+    { "id": "SUP-2", "name": "Pump Installation Cooperative", "roles": ["tenderer"], "registrationID": "EXAMPLE-002" }
+  ],
+  "lots": [
+    { "id": "LOT-1", "title": "North site", "estimatedAmount": 1800000 },
+    { "id": "LOT-2", "title": "South site", "estimatedAmount": 1200000 }
+  ],
+  "units": [ { "id": "SET", "name": "set" }, { "id": "SERVICE", "name": "service" } ],
+  "classifications": [
+    { "id": "PUMP", "scheme": "EXAMPLE-ITEMS", "description": "Solar pump equipment (fictional code)" },
+    { "id": "INSTALL", "scheme": "EXAMPLE-ITEMS", "description": "Installation service (fictional code)" }
+  ],
+  "items": [
+    { "id": "ITEM-1", "lotID": "LOT-1", "description": "North solar pump", "quantity": 1, "unitID": "SET", "classificationID": "PUMP" },
+    { "id": "ITEM-2", "lotID": "LOT-1", "description": "North installation", "quantity": 1, "unitID": "SERVICE", "classificationID": "INSTALL" },
+    { "id": "ITEM-3", "lotID": "LOT-2", "description": "South pump and installation", "quantity": 1, "unitID": "SET", "classificationID": "PUMP" }
+  ],
+  "awards": [
+    { "id": "AWD-1", "lotID": "LOT-1", "supplierID": "SUP-1", "amount": 1700000, "date": "2026-02-10T10:00:00+08:00" },
+    { "id": "AWD-2", "lotID": "LOT-2", "supplierID": "SUP-2", "amount": 1100000, "date": "2026-02-14T10:00:00+08:00" }
+  ],
+  "supplierCorrection": { "supplierID": "SUP-1", "name": "Solar Equipment Cooperative A", "date": "2026-02-12T10:00:00+08:00" },
+  "contracts": [
+    { "id": "CON-1", "awardID": "AWD-1", "amount": 1680000, "dateSigned": "2026-02-20T10:00:00+08:00", "start": "2026-03-01T00:00:00+08:00", "end": "2026-05-01T00:00:00+08:00" },
+    { "id": "CON-2", "awardID": "AWD-2", "amount": 1080000, "dateSigned": "2026-02-20T10:00:00+08:00", "start": "2026-03-01T00:00:00+08:00", "end": "2026-05-01T00:00:00+08:00" }
+  ]
+}

@@ -14,6 +14,10 @@ import { SearchPage } from "./pages/SearchPage";
 import { AboutPage } from "./pages/AboutPage";
 import { FAQPage } from "./pages/FAQPage";
 import { ReferencePage } from "./pages/ReferencePage";
+import { MappingGuidePage } from "./pages/MappingGuidePage";
+import { SimulationPage } from "./pages/SimulationPage";
+import { SolarLabPage } from "./pages/SolarLabPage";
+import { WorkshopPage } from "./pages/WorkshopPage";
 
 /**
  * Canonical routes live under `/journey`, `/possible-journeys`, `/publication`,
@@ -47,6 +51,10 @@ export function App() {
         <Route path="/possible-journeys/:journeyId" element={<PossibleJourneyDetailPage />} />
 
         <Route path="/publication" element={<PublicationPage />} />
+        <Route path="/mapping" element={<MappingGuidePage />} />
+        <Route path="/mapping/solar-pumps" element={<SolarLabPage />} />
+        <Route path="/simulation" element={<SimulationPage />} />
+        <Route path="/workshop" element={<WorkshopPage />} />
         <Route path="/explore/fields" element={<FieldExplorerPage />} />
         <Route path="/glossary" element={<GlossaryPage />} />
         <Route path="/reference" element={<ReferencePage />} />
