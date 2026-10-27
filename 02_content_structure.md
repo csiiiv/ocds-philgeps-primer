@@ -71,6 +71,16 @@ The original 7 concept-modules don't disappear — they fold into the stations a
 /possible-journeys/:journeyId  One journey detail (+ #timeline / #record anchors)
 /publication                   Release package + portfolio
                                (?cohort=signals|not-assessable|…&inspect=N)
+/mapping                       Mapping Guide (October 2026: fields, identifiers,
+                               codelists, events; anatomy + shared structures
+                               as supporting reference; #anatomy / #structures /
+                               #codelists / #codelist-practice anchors)
+/mapping/solar-pumps           Fictional solar-pump mapping lab
+                               (Source → Mapping → Result; #mapping-trace)
+/simulation                    Procurement replay
+                               (source tables, releases, records; timing modes)
+/workshop                      Facilitated workshop path
+                               (#agenda / #templates / #outputs)
 /explore/fields                Intermediate field tracing
 /glossary                      Glossary
 /reference                     Canonical reference index
@@ -83,6 +93,8 @@ The original 7 concept-modules don't disappear — they fold into the stations a
 /trace                         → /explore/fields
 /explore                       → /explore/fields
 ```
+
+> **Navigation grouping (October 2026 restructuring).** The sidebar now organises routes into four sections — **Learn OCDS** (five-station introduction, procurement replay, process examples, publication & portfolio), **Map data** (Mapping Guide, Field Explorer, solar-pump lab), **Workshop** (learning path, templates, outputs), and **Reference** (glossary, FAQ, official references, About). Only the active section expands its child links; the station list shows while following the introduction. Route names and deep-link anchors are unchanged. See [`docs/structure-review.md`](docs/structure-review.md).
 
 - `/journey` is the **hub**: the subway diagram with all stations visible; clicking a station routes to its dedicated page.
 - Each `/journey/<station>` page has the station's lens component + its explanatory prose + a knowledge check + prev/next along the journey.
@@ -164,6 +176,8 @@ The introductory examples are **fictional but shaped on real PhilGEPS records**.
 
 The workspace already has accurate conceptual content; the primer rewrites for tone/length and links out for depth. Updated to map sources to stations:
 
+> **Path note (October 2026).** The `../` links in the table below refer to sibling material in the original `philgeps_data_analysis` workspace (pipeline architecture, schema analysis, explorer reference data). This repository is now standalone; those targets are not present in a fresh clone. The links are kept for provenance — resolve them against the original workspace if available.
+
 | Existing doc | Reused for station |
 |--------------|--------------------|
 | [`PHILGEPS_PIPELINE_ARCHITECTURE.md`](../PHILGEPS_PIPELINE_ARCHITECTURE.md) | The **journey itself** (the 5-layer pipeline diagram is the primer's spine); Station 2 (Schema 3 columns); Station 3 (canonical model design, raw→canonical) |
@@ -196,10 +210,10 @@ Starter terms, now grouped by the station where they first appear:
 
 ## Navigation model
 
-- **Sidebar:** Landing → Journey (hub) → the 5 stations (indented under Journey) → Trace → Glossary → Reference → About. *(Glossary, Reference index, and About are all implemented; Reference and About read from a shared `canonicalReferences.ts` content module so the same data drives the page and the About summary.)*
-- **Prev/Next:** walks the journey linearly: Landing → Event → Extracted → Mapped → Record → Analyzed → Trace.
+- **Sidebar:** four sections — **Learn OCDS** (introduction + stations while in the journey, procurement replay, process examples, publication & portfolio), **Map data** (Mapping Guide, Field Explorer, solar-pump lab), **Workshop** (learning path, templates, outputs), and **Reference** (Glossary, FAQ, official references, About). Only the active section's children are visible; station links appear while following the introduction. *(Glossary, Reference index, and About are all implemented; Reference and About read from a shared `canonicalReferences.ts` content module so the same data drives the page and the About summary.)*
+- **Prev/Next:** walks the journey linearly: Landing → Event → Extracted → Mapped → Record → Analyzed, then hands off to the wider chapters.
 - **Hub diagram:** `/journey` is the visual table of contents — clicking a station deep-links.
-- **Search:** client-side full-text over station prose + glossary. (v1.)
+- **Search:** client-side full-text over station prose, Possible Journeys, Field Explorer traces, the Mapping Guide's topics/codelists/structures/practice, the solar lab's mapping traces, workshop lessons and templates, glossary, FAQ, and publication content.
 
 ---
 

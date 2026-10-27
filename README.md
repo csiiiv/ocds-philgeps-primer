@@ -39,12 +39,15 @@ Read in this order:
 | 13 | [`13_field_explorer.md`](13_field_explorer.md) | Optional intermediate source-field-to-OCDS trace explorer |
 | 14 | [`14_glossary_and_search.md`](14_glossary_and_search.md) | Filterable glossary and client-side search contract |
 | 15 | [`15_faq.md`](15_faq.md) | Drafted FAQ content for the `/faq` page — primer scope, mental model, usage, data, and next steps |
+| 16 | [`16_alignment_vs_official_sample.md`](16_alignment_vs_official_sample.md) | Cross-check of both output patterns against the official OCDS fictional-example sample |
+
+Workshop-phase planning (October 2026) lives in [`docs/`](docs/): the [website update plan](docs/website-update-plan.md), the accepted [structure review](docs/structure-review.md), the [workshop outline](docs/PhilGEPS_OCDS_Workshop_Outline.md), the [refresher discussion summary](docs/PhilGEPS_OCDS_Refresher_Discussion_Summary.md), and the [data-model and mapping supplement](docs/PhilGEPS_OCDS_Supplement_Data_Model_and_Mapping.md).
 
 ## Status
 
-The implemented learning arc now moves from one clearly labelled synthetic journey, through audited real source-row shapes, to a multi-process release package and portfolio-level view. Selectable field tracing remains reserved for an intermediate exploration chapter.
+The implemented learning arc now moves from one clearly labelled synthetic journey, through audited real source-row shapes, to a multi-process release package and portfolio-level view. Selectable field tracing remains reserved for an intermediate exploration chapter. As of October 2026 the site additionally carries the practical mapping-workshop companion: Mapping Guide, procurement replay, solar-pump lab, and the facilitated workshop path.
 
-The site is deployed at <https://csiiiv.github.io/ocds-philgeps-primer/> via GitHub Pages (verified live). It has no organizational owner beyond this repository; run and inspect it locally for development.
+The site is deployed at <https://csiiiv.github.io/ocds-philgeps-primer/> via GitHub Pages (verified live after the workshop deployment, commit `eccaa48`, 2026-10-27). It has no organizational owner beyond this repository; run and inspect it locally for development.
 
 ## Mapping workshop additions (local implementation)
 

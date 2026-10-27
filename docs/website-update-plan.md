@@ -1,7 +1,7 @@
 # OCDS Primer Website Update Plan
 
 Date: October 27, 2026  
-Status: Implemented locally, including the foundation lessons, procurement replay, timing controls, fictional relational lab, and workshop materials. Actual PhilGEPS schema/worksheet integration and production mapping decisions remain dependent on source-owner input. Not yet published.
+Status: Implemented and **published** to <https://csiiiv.github.io/ocds-philgeps-primer/> (commit `eccaa48`, deployed and verified 2026-10-27). Actual PhilGEPS schema/worksheet integration and production mapping decisions remain dependent on source-owner input.
 
 ## Purpose
 
@@ -36,7 +36,7 @@ The implementation preserves the existing five-station journey and the earlier n
 - `npm run build`: existing example/package validation, 18 learning-data/schema/semantic checks, TypeScript checks, and production bundling passed.
 - `npm run test:e2e -- --project=desktop`: 18 browser checks passed after restructuring, covering grouped navigation, a single introductory action, topic/legacy anchors, retained exercise state, all replay controls, unpublished source changes, exact per-release JSON, downloads, keyboard navigation/focus, and layouts at 1440×900, 1920×1080, and 2560×1440.
 - Automated WCAG A/AA checks reported no violations in the tested default pages, mapping topics, lab/workshop views, replay source/release/record views, versioned history, and active release inspector. These are automated checks, not a manual assistive-technology review.
-- The earlier feature implementation was also checked with a production build and preview under `/ocds-philgeps-primer/`. This desktop restructuring has been validated locally and has not been published. Dedicated mobile optimization remains deferred.
+- The earlier feature implementation was also checked with a production build and preview under `/ocds-philgeps-primer/`. The desktop restructuring and all workshop features were published on 2026-10-27 (commit `eccaa48`) and verified live: the GitHub Actions deploy workflow passed, the four new routes serve correctly, and the three Excel workbooks download with their original filenames preserved. Dedicated mobile optimization remains deferred.
 
 ### Remaining source-dependent work
 

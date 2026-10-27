@@ -1,7 +1,7 @@
 # Primer structure review
 
 Date: October 27, 2026  
-Status: Accepted restructuring implemented locally. The assessment below records the earlier baseline and the design decisions that guided this revision.
+Status: Accepted restructuring implemented and **published** to <https://csiiiv.github.io/ocds-philgeps-primer/> (commit `eccaa48`, deployed 2026-10-27). The assessment below records the earlier baseline and the design decisions that guided this revision.
 
 Scope: **Desktop first**, following the user's priority. Optimize the hierarchy and working layouts at 1440px, 1920px, and 2560px. Mobile redesign is deferred to a later pass; existing mobile behavior is background context for this assessment.
 
@@ -16,7 +16,7 @@ Scope: **Desktop first**, following the user's priority. Optimize the hierarchy 
 - Workshop agenda, templates, and outputs are separate views. Exercise and checklist state survives switching local views.
 - Desktop layout is targeted at 1440×900, 1920×1080, and 2560×1440. A basic stacked fallback is retained; mobile redesign remains deferred.
 
-Validation: `npm run build` passed, including 18 data/schema/semantic checks and TypeScript. All 18 desktop browser checks passed, including the target window sizes, navigation and deep links, state preservation, exact release inspection, downloads, keyboard focus, and automated WCAG A/AA checks across the new views. Desktop screenshots were also inspected locally. No publication was performed.
+Validation: `npm run build` passed, including 18 data/schema/semantic checks and TypeScript. All 18 desktop browser checks passed, including the target window sizes, navigation and deep links, state preservation, exact release inspection, downloads, keyboard focus, and automated WCAG A/AA checks across the new views. Desktop screenshots were also inspected locally. The result was published on 2026-10-27 (commit `eccaa48`) and verified live on GitHub Pages.
 
 ## Overall assessment
 

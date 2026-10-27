@@ -15,7 +15,12 @@ The sidebar search opens `/search?q=...`. The client-side index covers:
 - all five introductory stations and their callouts;
 - every Possible Journey and its analytical boundaries;
 - all Field Explorer traces, rules, paths, and values;
+- the Mapping Guide — its four mapping topics, release anatomy, shared structures, codelists, and codelist practice questions;
+- the solar-pump lab's mapping traces;
+- the procurement replay and its publication/record timing modes;
+- the workshop lessons and template workbooks;
 - glossary entries;
+- FAQ entries;
 - the publication and portfolio chapter.
 
 Results require every query term to appear and rank exact or prefix title matches above excerpt and body matches. Search is entirely client-side and does not transmit queries or learner activity.

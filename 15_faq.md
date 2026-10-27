@@ -32,7 +32,7 @@ The first journey uses **clearly labelled synthetic data** — a designed teachi
 
 ### Is this an official publication?
 
-No. This is an organization-neutral local proof of concept. It has no designated owner, publisher, or public deployment target. Example publication metadata is visibly synthetic — the generated release package uses a deterministic, non-resolving `urn:uuid:` and a generic local POC publisher name. A future production publisher must supply and control its own persistent package URI, registered OCID prefix, license, publication policy, and hosting location.
+No. This is an organization-neutral local proof of concept, now published as a GitHub Pages site for demonstration (<https://csiiiv.github.io/ocds-philgeps-primer/>). It has no owner or publisher beyond this repository. Example publication metadata remains visibly synthetic — the generated release package uses a deterministic, non-resolving `urn:uuid:` and a generic local POC publisher name. A future production publisher must supply and control its own persistent package URI, registered OCID prefix, license, publication policy, and hosting location.
 
 ---
 
@@ -83,11 +83,13 @@ No. The primer assumes comfort with spreadsheets and reading JSON, not programmi
 The designed path is:
 
 1. **The journey** — five stations, in order: Event → Extraction → Mapping to OCDS → Record → Indicators and Red Flags.
-2. **Possible Journeys** — compare cancelled, incomplete, retendered, and other real-world process shapes against the tidy introductory one.
-3. **Publication & Portfolio** — see many processes assembled into a publication and analysed as a portfolio.
-4. **Field Explorer** (optional, intermediate) — follow a single source field end to end after the mental model is secure.
+2. **Procurement replay** — watch the same model unfold event by event, with independent publication and record-generation timing.
+3. **Possible Journeys** — compare cancelled, incomplete, retendered, and other real-world process shapes against the tidy introductory one.
+4. **Publication & Portfolio** — see many processes assembled into a publication and analysed as a portfolio.
+5. **Mapping Guide / Field Explorer / solar-pump lab** (Map data) — apply the model to source systems, values, keys, and relationships.
+6. **Workshop** — the facilitated route if you are preparing for or following the PhilGEPS mapping workshop.
 
-The sidebar groups the journey's stations by phase with colour-coded rails that mirror the subway diagram, so the three-phase structure (Events → Releases → Analytics) stays visible.
+Navigation is grouped into **Learn OCDS**, **Map data**, **Workshop**, and **Reference** sections; the journey's stations appear in the sidebar while you follow the introduction.
 
 ### How does progress tracking work, and where is it stored?
 
@@ -141,4 +143,4 @@ Try the **Glossary** for term definitions, the **Reference index** for the autho
 
 ### How is the site built?
 
-A static React + Vite + TypeScript application. Markdown-driven content keeps non-developers able to edit lessons; interactive station lenses are embedded where the journey needs them. There is no backend, no authentication, and no analytics. The build validates every example against the canonical OCDS schemas plus semantic assertions for chronology, party introduction, and implementation semantics, so a broken fixture cannot ship.
+A static React + Vite + TypeScript application. Markdown-driven content keeps non-developers able to edit lessons; interactive station lenses are embedded where the journey needs them. There is no backend, no authentication, and no analytics. The build validates every example against the canonical OCDS schemas plus semantic assertions for chronology, party introduction, and implementation semantics, so a broken fixture cannot ship. It is deployed to GitHub Pages (<https://csiiiv.github.io/ocds-philgeps-primer/>) on every push to `main`; hash-based routing keeps deep links working on the static host. The build also runs the learning-data checks (`npm test` — 18 checks covering the replay's nine timing combinations, immutability, record snapshots, package schemas, the vendored Lots extension constraints, and search coverage) and a Playwright browser suite with automated WCAG A/AA scans.

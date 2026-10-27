@@ -15,10 +15,11 @@ The Field Explorer is optional intermediate material at `/explore/fields`. It fo
 
 ## Interaction contract
 
-- A persistent field list selects one trace.
+- A persistent field list selects one trace; the selection persists through reloads via the URL.
 - Every trace states the transformation rule, rationale, and any caveat.
 - Each mapped value names its exact source line, source field and value, OCDS path, and OCDS value.
+- Every trace carries an explicit metadata block (October 2026): source system/schema version (recorded as "database schema/version not supplied"), source table, source type, OCDS type, mapping classification, join/cardinality rule, review status, and fixture assumptions.
 - The full Journey Detail evidence remains one link away.
 - The explorer demonstrates that mapping is not necessarily field renaming: a value can establish identity, create an array member, populate multiple paths, or be rejected as a sentinel.
 
-The explorer currently documents tested POC behavior. It is not a generic mapping-authoring tool and does not imply that these rules apply unchanged to every PhilGEPS schema.
+The explorer currently documents tested POC behavior. It is not a generic mapping-authoring tool and does not imply that these rules apply unchanged to every PhilGEPS schema. A relational companion lives in the Mapping Guide's structures topic and the fictional solar-pump lab (`/mapping/solar-pumps`), which show source tables and joins beside the resulting OCDS objects.

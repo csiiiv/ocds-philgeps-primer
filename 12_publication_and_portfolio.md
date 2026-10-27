@@ -45,7 +45,7 @@ The total award value is a direct sum of `awards[].value.amount`. It is not adju
 
 ## Route
 
-The chapter is available at `/publication` and appears as **Publication & Portfolio** in the primary navigation.
+The chapter is available at `/publication` and appears as **Publication & portfolio** under the **Learn OCDS** navigation section (grouped with the introduction, procurement replay, and process examples since the October 2026 restructuring).
 
 ## Next interaction
 

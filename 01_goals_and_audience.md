@@ -31,6 +31,7 @@ OCDS has a famously wide readership. We cannot serve all of them equally in a si
 | **The developer (Karim)** | Backend/data engineer integrating a publishing pipeline | Fast, accurate mental model of release vs record, package structure, where extensions live. Will skim concept modules, go deep on structure/identifiers. |
 | **The government publisher (Lena)** | Responsible for her agency's OCDS publication | Why process-orientation matters, what a release package must contain, how mapping to source systems works. Will click through to the explorer. |
 | **The policy/training lead (Ravi)** | Designs training for a procurement authority | Authoritative-enough content he can point staff at; ideally printable/reusable under an open license. |
+| **The mapping-workshop participant (October 2026)** | PhilGEPS/eBiz staff preparing field-level mapping workbooks | The Mapping Guide, codelist practice, the solar-pump relational lab, and the replay's publication-timing modes as hands-on preparation; downloads the supplied Excel workbooks from `/workshop`. |
 | **The curious public (anyone)** | Lands from a news article mentioning "OCDS" | A 2-minute "what is this" explainer before the deep stuff. |
 
 ### Anti-personas (explicitly not the target)
@@ -110,7 +111,7 @@ This is open decision **D7** in the planning index.
 - Not a validator — link to cove / the Data Review Tool.
 - Not a replacement for OCP's own [primer](https://standard.open-contracting.org/latest/en/primer/) and [getting-started](https://standard.open-contracting.org/latest/en/getting-started/) pages — in particular, [How is OCDS data published? (releases and records)](https://standard.open-contracting.org/latest/en/primer/releases_and_records/) is the authoritative reference for the release/record/compiled/versioned distinction and the primer defers to it for formal definitions. The primer is a *complementary*, more interactive, more scenario-driven take that uses this project's PhilGEPS material as its worked example.
 - Not OCDS 1.2 — pinned to 1.1, consistent with the rest of the workspace.
-- Not a training programme — no facilitator guide, cohort features, or LMS integration in v1/v2.
+- Not a training programme — no cohort features or LMS integration. *(The October 2026 `/workshop` path is a facilitated learning route with supplied templates, not an LMS: it links existing lessons to a workshop agenda and expects outputs to be captured in the team's own shared process.)*
 
 ---
 

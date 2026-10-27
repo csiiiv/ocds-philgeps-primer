@@ -173,10 +173,38 @@ Synthetic, adapted, and real data must always carry visible provenance labels. T
 - **Embeddable lenses** — let the explorer (or external sites) embed `AnnotatedJsonTree` or the journey hub
 - **Shared package extraction** — promote vendored components to a workspace package (open decision **D3**)
 - **Glossary tooltips on hover/focus** — first-mention-of-term popover
+- **Mobile optimisation** — dedicated mobile layout pass; the current implementation is desktop-first (1440/1920/2560) with a stacked fallback and automated mobile e2e checks retained
+- **Real PhilGEPS schema integration** — replace the fictional relational sources in the replay and solar lab with actual PhilGEPS/eBiz schemas, field definitions, mapping worksheets, and sample records when supplied by the source owners (tracked in [`docs/website-update-plan.md`](docs/website-update-plan.md))
 
 ### Done when
 
 Per-item; no gate.
+
+---
+
+## Phase W — Workshop companion (October 2026) — **DONE**
+
+**Goal:** Extend the primer from an introduction to OCDS into a practical companion for the PhilGEPS field-level mapping workshop, without displacing the five-station journey.
+
+**Status (2026-10-27):** Complete and deployed. Planning in [`docs/website-update-plan.md`](docs/website-update-plan.md); accepted desktop-first restructuring recorded in [`docs/structure-review.md`](docs/structure-review.md); workshop session material in [`docs/PhilGEPS_OCDS_Workshop_Outline.md`](docs/PhilGEPS_OCDS_Workshop_Outline.md) and the accompanying refresher/data-model documents.
+
+### Scope (all done)
+
+- **Mapping Guide** at `/mapping` — release anatomy, four mapping tasks (fields, identifiers/relationships, codelists, events), shared structures, organization references, and interactive codelist practice
+- **Procurement replay** at `/simulation` — evolving fictional source tables (eight tables, row counts, keys, joins, OCDS destinations), captured changes, independent event-driven/scheduled/on-demand publication and record-generation modes (all nine combinations), immutable archived releases, field changes, retained values, JSON/package downloads; source snapshots advance independently of publication jobs and internal notes stay out of releases
+- **Solar-pump lab** at `/mapping/solar-pumps` — Source → Mapping → Result steps over fictional tables, three items across two lots, party references, awards/contracts linked through `awardID`, supplier-name correction and same-supplier variants; packages declare the pinned Lots extension 1.1.5 (vendored under `site/schemas/extensions/`)
+- **Workshop path** at `/workshop` — agenda-linked exercises, recap checklist, three supplied Excel mapping workbooks served from `templates/` with simple asset-name URLs (the `#`-bearing original filenames preserved via the download attribute), plus supplementary CSV templates and a link to the OCDS Mapping Explorer
+- **Restructured navigation** into Learn OCDS / Map data / Workshop / Reference sections with wide workspace layouts; existing URLs and anchors preserved (including a redirect from the old lab process-boundary anchor)
+- **Learning checks** — `npm test` (18 checks: nine timing combinations, capture/publication order, immutability, retained values, record snapshots, package schemas, Lots schema constraints, party/object relationships, templates, search coverage) wired into `npm run build`; Playwright desktop/mobile e2e with automated WCAG A/AA checks (18 desktop checks)
+- **Content updates** — glossary (67 terms), FAQ, official references, and search index extended to the new chapters
+
+### Done when
+
+- All four new routes teach and work as specified; `npm run build` and the e2e suite pass; the site deploys to GitHub Pages. *(met — deployed and verified live 2026-10-27, commit `eccaa48`)*
+
+### Not in scope (deferred, source-dependent)
+
+- Actual PhilGEPS/eBiz schemas, production identifiers, real codelist crosswalks, and workshop-output capture — all dependent on source-owner input (see [`docs/website-update-plan.md`](docs/website-update-plan.md) "Remaining source-dependent work")
 
 ---
 
@@ -185,9 +213,10 @@ Per-item; no gate.
 | Phase | What ships | Effort | Useful site? |
 |-------|-----------|--------|--------------|
 | 0 — Foundation | Scaffold + subway diagram v0 + release sub-stations *(done)* | 2–3 days *(done)* | No (proves pipeline) |
-| 1 — MVP | **One designed synthetic journey, all 5 stations, minimal interactivity** | ~2–3 weeks | **Yes — teaches the core model** |
-| 2 — v1 | Real-world journey gallery + release/record packages + portfolio view | ~3–4 weeks | Yes — corrects tidy-example bias and shows the bigger picture |
-| 3 — v2 | Contrast examples, i18n, analytics, embeds | ongoing | Iterative |
+| 1 — MVP | **One designed synthetic journey, all 5 stations, minimal interactivity** | ~2–3 weeks *(done)* | **Yes — teaches the core model** |
+| 2 — v1 | Real-world journey gallery + release/record packages + portfolio view | ~3–4 weeks *(done)* | Yes — corrects tidy-example bias and shows the bigger picture |
+| W — Workshop | Mapping Guide + procurement replay + solar-pump lab + workshop path + restructured navigation *(done, October 2026)* | ~2 weeks *(done)* | Yes — practical mapping companion |
+| 3 — v2 | Contrast examples, i18n, analytics, embeds, mobile optimisation, real-schema integration | ongoing | Iterative |
 
 Total to a complete v1: roughly **5–7 weeks** of focused single-contributor effort, with a usable, shareable first-journey MVP in **2–3 weeks**.
 

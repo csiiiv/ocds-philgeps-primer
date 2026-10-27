@@ -1,6 +1,6 @@
 # OCDS Primer — Planning Index
 
-**Status:** Local proof of concept implemented through the publication, portfolio, field-explorer, glossary, and search chapters (`site/`). No public host or organizational owner is designated.  
+**Status:** Implemented through the workshop phase and deployed at <https://csiiiv.github.io/ocds-philgeps-primer/> (GitHub Pages, auto-deploy on push to `main`). Scope now spans the five-station journey, Possible Journeys, Publication & Portfolio, Field Explorer, glossary/search/FAQ, Mapping Guide, procurement replay, solar-pump lab, and the facilitated workshop path.  
 **Purpose:** This file is the single entry point for primer planning. It frames the problem, lists the decisions we need to make, and summarises the recommendation that the other documents argue for in detail.
 
 ---
@@ -26,6 +26,7 @@ Planning is organised around six questions. Each has a dedicated document, follo
 7. **How closely does the current primer align with OCDS?** → [`07_ocds_alignment_audit.md`](07_ocds_alignment_audit.md)
 8. **Does the implemented journey meet its accessibility and responsive contracts?** → [`08_accessibility_and_responsive_audit.md`](08_accessibility_and_responsive_audit.md)
 9. **How do learners compare real-world process shapes and long-span projects?** → [`09_possible_journeys.md`](09_possible_journeys.md)
+10. **How did the primer extend into a practical mapping-workshop companion (October 2026)?** → [`docs/website-update-plan.md`](docs/website-update-plan.md) (implementation progress, remaining source-dependent work) and [`docs/structure-review.md`](docs/structure-review.md) (accepted desktop-first restructuring)
 
 ---
 
@@ -56,7 +57,7 @@ These are the choices that still need a human call before implementation starts.
 | D1 | Primary persona — lead with analyst vs developer | — | Analyst-first, developer as secondary layer |
 | D2 | Markdown framework — MDX-in-Vite vs Astro Star/Docusaurus | — | MDX-in-Vite (reuse explorer toolchain & components) |
 | D3 | Whether to share a component library with `ocds_mapping_explorer` | — | Share the JSON-tree + reference-loader primitives as a vendored folder |
-| D4 | Hosting target | — | Unresolved. Keep the build host-neutral until a real owner selects and controls a deployment target. |
+| D4 | ~~Hosting target~~ **RESOLVED:** GitHub Pages at <https://csiiiv.github.io/ocds-philgeps-primer/> via `.github/workflows/deploy.yml` (build on push to `main`, `VITE_BASE=/ocds-philgeps-primer/`, HashRouter). The build remains host-neutral in content; a future owner can still select another target. | — | Resolved 2026-10-27 |
 | D5 | Scope of Cardinal / red-flag content in MVP — full Station 5 or 2 indicators only | — | 2 indicators in MVP (R003, R024); expand in v1/v2 |
 | D6 | Whether the primer is single-language (EN) at launch | — | EN at launch; i18n deferred to v2 |
 | D7 | Tone/register — formal standard-style vs friendlier "explainer" voice | — | Friendlier explainer voice; link to canonical docs for formal definitions |
@@ -68,6 +69,7 @@ These are the choices that still need a human call before implementation starts.
 | D13 | ~~Field tracing in the introductory journey~~ **RESOLVED:** the first journey follows the contracting process itself from start to finish; selectable field tracing moves to a separate intermediate exploration chapter | — | Resolved 2026-08-04 |
 | D14 | ~~Section and station grammar~~ **RESOLVED:** use nouns throughout navigation: Events (Event, Extraction, Mapping to OCDS), Releases (Record), Analytics (Indicators and Red Flags) | — | Resolved 2026-08-04 |
 | D15 | ~~POC identity and publication references~~ **RESOLVED:** do not infer a host, owner, publisher, package scope, or repository from the workspace path. Use verified external references, relative local paths, and visibly synthetic fixture metadata. | — | Resolved 2026-08-05 |
+| D16 | ~~Workshop and mapping-lab scope~~ **RESOLVED (2026-10-27):** the site extends beyond the introductory journey into a PhilGEPS field-level mapping workshop companion: Mapping Guide (`/mapping`), procurement replay (`/simulation`), solar-pump lab (`/mapping/solar-pumps`), and workshop path (`/workshop`) with the three supplied Excel workbooks from `templates/`. Planning lives in [`docs/website-update-plan.md`](docs/website-update-plan.md); the accepted restructuring is recorded in [`docs/structure-review.md`](docs/structure-review.md). | — | Resolved 2026-10-27 |
 
 ---
 

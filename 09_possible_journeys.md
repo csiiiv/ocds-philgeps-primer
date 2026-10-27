@@ -4,6 +4,8 @@
 
 Chapter 2 corrects the introductory flagship's tidy-example bias. Learners compare contracting processes that stop, contain multiple items or awards, expose chronology problems, or span much longer periods. The chapter does not repeat the five-station tutorial; it asks learners to recognize source-row shape, process shape, provenance, analytical possibilities, and limitations.
 
+> **Navigation note (October 2026).** The gallery now appears under the **Learn OCDS** section as **Process examples** (`/possible-journeys`), after the procurement replay. Route names, journey IDs, and all deep-link anchors are unchanged.
+
 ## Provenance contract
 
 Every journey carries one of three labels:

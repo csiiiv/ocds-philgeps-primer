@@ -1,7 +1,7 @@
 # 08 — Accessibility and Responsive Audit
 
-**Audit date:** 2026-08-04  
-**Scope:** static interaction audit, keyboard contracts, semantic markup, focus behavior, contrast-sensitive tokens, reduced motion, and responsive CSS
+**Audit date:** 2026-08-04 (original); **updated 2026-10-27** after the desktop-first workshop restructuring  
+**Scope:** static interaction audit, keyboard contracts, semantic markup, focus behavior, contrast-sensitive tokens, reduced motion, responsive CSS, and — since October — automated browser accessibility checks
 
 ## Corrections implemented
 
@@ -39,3 +39,34 @@ The next release-inspector refactor must be tested once across all consuming con
 - Contrast verification with rendered states, including disabled controls and tags
 
 The remaining checks require rendered-browser and assistive-technology observation; a passing compiler cannot substitute for them.
+
+---
+
+## Update — 2026-10-27 (workshop restructuring)
+
+The October desktop-first restructuring (see [`docs/structure-review.md`](docs/structure-review.md)) added automated rendered-browser checks and closed several of the earlier manual gaps for the new surfaces:
+
+### Corrections implemented (October)
+
+- **Automated WCAG A/AA checks** now run via `@axe-core/playwright` (`npm run test:e2e`) against the default pages, mapping topics, lab/workshop views, replay source/release/record views, versioned history, and the active release inspector. No violations were reported in the tested states. These are automated checks, not a manual assistive-technology review.
+- **18 desktop browser checks** pass at 1440×900, 1920×1080, and 2560×1440, covering grouped navigation, deep links and legacy anchors, retained exercise state, all replay controls, unpublished source changes, exact per-release JSON, downloads, and keyboard navigation/focus.
+- The skip link now routes through the router (HashRouter owns the fragment), scrolling to and focusing the main content programmatically.
+- In-page section fragments (e.g. `#/workshop#templates`) are resolved programmatically after navigation, scrolling to and focusing the target, since the browser cannot scroll to targets inside the router's fragment.
+- The mobile progress indicator exposes proper `role="progressbar"` semantics with `aria-valuemin`/`aria-valuemax`/`aria-valuenow`.
+- Section-framed navigation uses links and native buttons rather than re-purposed list items.
+- The mobile keyboard/accessibility issues encountered in the new learning paths (navigation drawer focus handling, control reachability) were fixed during implementation.
+
+### Verification completed (October, automated)
+
+- `npm run build` — example/package validation, 18 learning-data/schema/semantic checks, TypeScript strict, production bundling
+- `npm run test:e2e -- --project=desktop` — 18 browser checks across the three desktop target sizes
+- Automated axe-core WCAG A/AA scans across the new views — no violations reported
+- Mobile e2e project remains available and retained (390×844); **dedicated mobile optimisation is deferred** — the desktop-first pass keeps a basic stacked fallback
+
+### Still requiring manual verification
+
+- Screen-reader walkthrough (NVDA/VoiceOver) of the new surfaces — replay event rail, artifact picker, mapping topics, lab steps, workshop views
+- Keyboard walkthrough in Firefox and Safari (the automated suite runs Chromium)
+- 200–400% zoom verification on the new wide workspaces
+- Lighthouse runs against the deployed build
+- The release-inspector acceptance list above remains the reference contract for any future inspector refactor

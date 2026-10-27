@@ -16,7 +16,7 @@
 
 ## The journey, and why it is the spine
 
-The workspace's own [`PHILGEPS_PIPELINE_ARCHITECTURE.md`](../PHILGEPS_PIPELINE_ARCHITECTURE.md) defines a 5-layer pipeline. That pipeline *is* the journey we want to teach:
+The workspace's own `PHILGEPS_PIPELINE_ARCHITECTURE.md` (in the original `philgeps_data_analysis` workspace; not present in this standalone repository) defines a 5-layer pipeline. That pipeline *is* the journey we want to teach:
 
 ```text
 EVENTS                                    RELEASES                          ANALYTICS
@@ -37,7 +37,7 @@ Layer 3  OCDS         canonical fields become a sequence of releases about the p
              │   (the compiled view a consumer analyses is the *output* of that merge)
 ```
 
-> **Critical correction to the original framing.** "A release" is **not** the same as "a contracting process." One contracting process (one `ocid`) is told through **multiple releases** over time — a tender release, an award release, a contract release, amendments. Those releases are aggregated into a **record**, which holds a release index, a compiled release (current state), and a versioned release (per-field history). The primer teaches the canonical OCDS model (incremental publishing, full event history). See [How is OCDS data published?](https://standard.open-contracting.org/latest/en/primer/releases_and_records/) and [`OCDS_PROCESS_AND_RELEASE_IDENTITY.md`](../philgeps_schema_analysis/docs/OCDS_PROCESS_AND_RELEASE_IDENTITY.md).
+> **Critical correction to the original framing.** "A release" is **not** the same as "a contracting process." One contracting process (one `ocid`) is told through **multiple releases** over time — a tender release, an award release, a contract release, amendments. Those releases are aggregated into a **record**, which holds a release index, a compiled release (current state), and a versioned release (per-field history). The primer teaches the canonical OCDS model (incremental publishing, full event history). See [How is OCDS data published?](https://standard.open-contracting.org/latest/en/primer/releases_and_records/) and `OCDS_PROCESS_AND_RELEASE_IDENTITY.md` (original workspace).
 
 This is far more memorable than a concept ladder because:
 
@@ -152,7 +152,7 @@ Each station has a *lens* — a specialised viewer for the artefact at that stat
 
 > The process boundary is the `ocid` — not the calendar and not a universally prescribed source column. OCDS says to construct it from the publisher's best stable internal identifier for the contracting process. In the exports currently available here, `bid_reference_no` is the strongest observed tender-stage key. If future APP data exposes an earlier identifier that is unique and persists across tender, award, contract, and implementation, it may be the better root. If one APP entry leads to multiple attempts, retain it as planning provenance and give the attempts distinct, related `ocid` values.
 
-A second callout warns against treating fallback fields as interchangeable. Sample analysis found 679 solicitation values in S3 2021 mapping to multiple unrelated bids (one solicitation, 62 bids). Solicitation, award, and other fallbacks need separate namespaces, provenance, and collision tests. They must not silently claim the same boundary confidence as a valid bid reference. Source: [`OCDS_PROCESS_AND_RELEASE_IDENTITY.md`](../philgeps_schema_analysis/docs/OCDS_PROCESS_AND_RELEASE_IDENTITY.md).
+A second callout warns against treating fallback fields as interchangeable. Sample analysis found 679 solicitation values in S3 2021 mapping to multiple unrelated bids (one solicitation, 62 bids). Solicitation, award, and other fallbacks need separate namespaces, provenance, and collision tests. They must not silently claim the same boundary confidence as a valid bid reference. Source: `OCDS_PROCESS_AND_RELEASE_IDENTITY.md` (original workspace).
 
 ### Station 4 — Record: `RecordViewer`
 
@@ -230,7 +230,7 @@ This is a deliberate choice (open decision **D10**, resolved): the primer teache
 
 **Honest note on the pipeline.** The workspace's `compile_ocds.py` creates artifacts labelled as compiled releases, but its process grouping and multi-award handling are under review; see [`11_etl_observations.md`](11_etl_observations.md). The primer's worked-example `releases[]` and record remain **illustrative of the target incremental publishing model**. Chapter 2 uses a separate audited POC transformation and calls each real result a reconstructed current-state release, not a source history or compiled record.
 
-> **Authoritative source:** [How is OCDS data published? — releases and records](https://standard.open-contracting.org/latest/en/primer/releases_and_records/) (OCDS 1.1.5 primer). Also: [`OCDS_PROCESS_AND_RELEASE_IDENTITY.md`](../philgeps_schema_analysis/docs/OCDS_PROCESS_AND_RELEASE_IDENTITY.md) §"Live / incremental publishing"; [OCDS merging guidance](https://standard.open-contracting.org/latest/en/guidance/build/merging/).
+> **Authoritative source:** [How is OCDS data published? — releases and records](https://standard.open-contracting.org/latest/en/primer/releases_and_records/) (OCDS 1.1.5 primer). Also: `OCDS_PROCESS_AND_RELEASE_IDENTITY.md` (original workspace) §"Live / incremental publishing"; [OCDS merging guidance](https://standard.open-contracting.org/latest/en/guidance/build/merging/).
 
 ### Station 5 — Indicators and Red Flags: `RedFlagPlayground`
 

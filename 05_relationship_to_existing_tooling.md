@@ -1,6 +1,6 @@
 # 05 — Relationship to Existing Tooling
 
-> **Scope and identity:** Relationships described here are local workspace relationships, not evidence of common organizational ownership or public deployment. Names such as `ocds-ui` are illustrative unscoped package names, not published registry packages unless a verified registry entry is cited.
+> **Scope and identity:** Relationships described here are local workspace relationships from the original `philgeps_data_analysis` workspace, not evidence of common organizational ownership or public deployment. The sibling directories referenced below (`ocds_mapping_explorer/`, `philgeps_schema_analysis/`, `references/`) are **not present in this standalone repository** — this section records provenance and design intent. Names such as `ocds-ui` are illustrative unscoped package names, not published registry packages unless a verified registry entry is cited.
 
 **Question:** How does the primer relate to `ocds_mapping_explorer`, the schema/reference data, and the corpus docs — without duplicating any of them?
 
@@ -15,7 +15,7 @@ The workspace already has three distinct layers of OCDS material. The primer bec
 | **Reference (source of truth)** | `references/ocds-release-schema.json`, `ocds_mapping_explorer/public/ocds_reference.json`, OCP canonical docs (external) | Define what OCDS *is* | Experts, tools |
 | **Working tool** | `ocds_mapping_explorer/` (React app) | Map a source system to OCDS; validate; export | Publishers, engineers |
 | **Conceptual docs** | `docs/*.md`, `philgeps_schema_analysis/docs/*.md`, `philgeps_ocds_plan.md` | Explain PhilGEPS→OCDS in depth, in prose | Engineers on this project |
-| **Primer (new)** | `ocds_primer/` | *Teach* OCDS concepts interactively, to people who don't already know them | Analysts, journalists, CSOs, new developers |
+| **Primer (new)** | `ocds_primer/` → now this repository's `site/` | *Teach* OCDS concepts interactively, to people who don't already know them | Analysts, journalists, CSOs, new developers |
 
 The primer is the **teaching layer**. Its job is to make the other three layers reachable by people who currently bounce off them.
 
@@ -87,7 +87,7 @@ This is the main technical reuse and the strongest argument for the recommended 
 
 | Option | Mechanism | Pros | Cons |
 |--------|-----------|------|------|
-| **A. Vendor** (recommended for MVP) | Copy the needed components into `ocds_primer/src/components/shared/` with a `// vendored from ocds_mapping_explorer — keep in sync` header | Simplest; no packaging; no version drift between primer and a published package | Manual sync when shared code changes |
+| **A. Vendor** (recommended for MVP) | Copy the needed components into the primer's `src/components/shared/` with a `// vendored from ocds_mapping_explorer — keep in sync` header | Simplest; no packaging; no version drift between primer and a published package | Manual sync when shared code changes |
 | **B. Local workspace package** | Extract a `packages/ocds-ui` (or use a monorepo / npm `workspace:*`) referenced by both apps | Clean; one source of truth; no copy drift | Requires monorepo setup; more moving parts |
 | **C. Publish to a registry** | Publish an organization-neutral `ocds-ui` package and consume it in both | Fully decoupled | Overkill at current scale; publish pipeline overhead |
 
@@ -98,6 +98,8 @@ The primer must never *import directly* from `../ocds_mapping_explorer/src/...` 
 ---
 
 ## Data dependencies (what the primer reads at build/runtime)
+
+> **As-implemented note (October 2026):** this table records the original plan. In the shipped site, `ocds_reference.json` was never vendored — annotations are authored directly in the site's TypeScript content modules, and the "official references" surface reads from `src/content/canonicalReferences.ts` instead. The build-time schema validation rows remain accurate (`site/scripts/validate-examples.mjs` + `npm test`'s learning checks, including the vendored Lots extension schemas under `site/schemas/extensions/`).
 
 | Asset | Source | Loaded | Used by |
 |-------|--------|--------|---------|
@@ -114,7 +116,7 @@ Nothing is fetched at runtime from a remote server in v1. The site is fully stat
 
 ## Naming and identity
 
-- The primer is a sibling app to the explorer, not a child of it. Suggested project name: **"OCDS Primer"** (folder `ocds_primer/`). It has its own `package.json`, its own deploy, its own README.
+- The primer is a sibling app to the explorer, not a child of it. Project name: **"OCDS Primer"** — in this standalone repository the site lives in `site/` (historically `ocds_primer/` inside the wider workspace). It has its own `package.json`, its own deploy (GitHub Pages), and its own README.
 - Both apps link to each other: primer → explorer ("try this for real"), explorer → primer ("new to OCDS? start here").
 - Attribution: both credit OCP as the standard's maintainer; primer cites the specific docs it teaches from.
 

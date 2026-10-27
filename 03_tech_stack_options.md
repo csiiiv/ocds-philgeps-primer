@@ -123,7 +123,7 @@ This is open decision **D2/D3** — worth revisiting after MVP if Option B's aut
 
 ## Recommendation
 
-The recommendation concerns the build architecture only. It does not select or imply a hosting provider, domain, repository, organization, or deployment owner. The generated static files are host-neutral; deployment remains an explicit future decision.
+The recommendation concerns the build architecture. Deployment is now resolved (decision **D4**): GitHub Pages via the checked-in workflow. The generated static files remain host-neutral; a future production publisher can select and control a different target without content changes.
 
 **Option B — MDX-in-Vite + React + TypeScript**, sharing primitives with `ocds_mapping_explorer`.
 
@@ -134,18 +134,20 @@ Concretely:
 | Build tool | **Vite** (matches explorer) |
 | UI framework | **React 18 + TypeScript** (matches explorer) |
 | Content authoring | **MDX** (`@mdx-js/rollup`) — one `.mdx` per lesson, frontmatter for title/order/tags |
-| Routing | **React Router** (matches explorer's route style) |
+| Routing | **React Router** (**HashRouter** — required for GitHub Pages, which has no SPA fallback) |
 | Styling | **CSS Modules / Tailwind** — match whichever the explorer uses for consistency |
 | State / progress | **localStorage** (no backend); module completion + quiz scores |
 | Search | Client-side index (FlexSearch or similar) built at build time over MDX content + glossary |
 | Diagrams | Inline SVG components for the lifecycle; reusable across modules |
 | Data | Reuse `ocds_reference.json` and the worked-example JSON directly |
-| Deploy | **Unresolved** — produce a host-neutral static `dist/`; select a provider only when an actual owner and target are confirmed |
+| Deploy | **GitHub Pages** via `.github/workflows/deploy.yml` — builds on push to `main` with `VITE_BASE=/ocds-philgeps-primer/` and publishes `site/dist` (<https://csiiiv.github.io/ocds-philgeps-primer/>). The build output remains host-neutral static files; a future owner can select another target. |
 
 ### Suggested package layout
 
+> As implemented, this structure lives under `site/` in this repository (the `ocds_primer/` name refers to its original location in the wider workspace).
+
 ```
-ocds_primer/
+site/
 ├── src/
 │   ├── content/            # .mdx lessons + frontmatter
 │   │   ├── modules/
@@ -183,6 +185,6 @@ ocds_primer/
 
 ## Open questions for review
 
-- Confirm **Option B** over **Option A (Astro Star)** — open decision **D2**. The deciding factor is how much we value reusing explorer components vs out-of-the-box authoring.
+- Confirm **Option B** over **Option A (Astro Star)** — open decision **D2**. The deciding factor is how much we value reusing explorer components vs out-of-the-box authoring. *(In practice Option B has been implemented and extended through the workshop phase; the question is now historical.)*
 - Should the shared components live as a **vendored folder** in the primer, a **git submodule**, or a **published local package**? Open decision **D3**. Vendoring is simplest for v1.
-- Resolve the deployment owner and target without inferring either from the local workspace — open decision **D4**.
+- ~~Resolve the deployment owner and target without inferring either from the local workspace~~ — **D4 resolved (2026-10-27): GitHub Pages** via `.github/workflows/deploy.yml`. A future production publisher can still move it.

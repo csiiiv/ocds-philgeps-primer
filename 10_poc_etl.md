@@ -39,9 +39,9 @@ Each fixture produces one **current-state release reconstructed from flattened r
 
 The auditable inputs and outputs are checked in under `examples/poc_etl/`. The generator that originally produced them is not part of the primer directory, so it is not a supported or authoritative primer command. Until a generator is moved into this directory and reviewed against the primer's identity and publication-reference policy, validate the checked-in fixtures without regenerating them:
 
-```powershell
-cd ocds_primer/site
-npm.cmd run validate:examples
+```bash
+cd site
+npm run validate:examples
 ```
 
 Validation checks the OCDS 1.1 release schema and semantic counts for source rows, tender items, awards, and contracts. It also checks that every contract's `awardID` resolves to an award in the same release.
